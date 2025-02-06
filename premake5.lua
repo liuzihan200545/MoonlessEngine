@@ -1,4 +1,5 @@
 workspace "MoonlessEngine"
+    startproject "SandBox"
     architecture "x64"
 
     configurations{
@@ -7,7 +8,7 @@ workspace "MoonlessEngine"
         "Dist"
     }
 
-outputs = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "MoonlessEngine"
     location "MoonlessEngine"
@@ -30,6 +31,7 @@ project "MoonlessEngine"
         cppdialect "C++20"
         staticruntime "On"
         systemversion "latest"
+        buildoptions { "/utf-8" }
 
         defines{
             "ML_PLATFORM_WINDOWS",
@@ -37,7 +39,7 @@ project "MoonlessEngine"
         }
 
         postbuildcommands{
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" ..outputdir .. "/Sandbox")
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" ..outputdir .. "/SandBox")
         }
 
     filter "configurations:Debug"
@@ -57,8 +59,8 @@ project "SandBox"
     kind "ConsoleApp"
     language "C++"
 
-    targetdir ("bin/" ..outputs.. "/%{prj.name}")
-    objdir ("bin-int/" ..outputs.. "/%{prj.name}")
+    targetdir ("bin/" ..outputdir.. "/%{prj.name}")
+    objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
 
     files {
         "%{prj.name}/src/**.h",
@@ -74,6 +76,7 @@ project "SandBox"
     cppdialect "C++20"
     staticruntime "On"
     systemversion "latest"
+    buildoptions { "/utf-8" }
 
     defines{
         "ML_PLATFORM_WINDOWS"
