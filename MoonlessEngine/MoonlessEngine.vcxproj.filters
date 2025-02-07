@@ -4,9 +4,11 @@
     <Filter Include="Moonless">
       <UniqueIdentifier>{75C4F0F6-6191-4B02-8AAA-39AA76D68090}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Moonless\Events">
+      <UniqueIdentifier>{B93A78F5-25C6-E5B9-2ED7-68AE9AE141BA}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\Moonless.h" />
     <ClInclude Include="src\Moonless\Application.h">
       <Filter>Moonless</Filter>
@@ -17,9 +19,22 @@
     <ClInclude Include="src\Moonless\EntryPoint.h">
       <Filter>Moonless</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Events\ApplicationEvent.h">
+      <Filter>Moonless\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Events\Event.h">
+      <Filter>Moonless\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Events\KeyEvent.h">
+      <Filter>Moonless\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Events\MouseEvent.h">
+      <Filter>Moonless\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Log.h">
       <Filter>Moonless</Filter>
     </ClInclude>
+    <ClInclude Include="src\mlpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Moonless\Application.cpp">
@@ -28,5 +43,6 @@
     <ClCompile Include="src\Moonless\Log.cpp">
       <Filter>Moonless</Filter>
     </ClCompile>
+    <ClCompile Include="src\mlpch.cpp" />
   </ItemGroup>
 </Project>

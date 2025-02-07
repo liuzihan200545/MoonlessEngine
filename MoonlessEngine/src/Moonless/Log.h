@@ -14,7 +14,7 @@ struct fmt::formatter<T,std::enable_if_t<std::is_base_of_v<Moonless::Event,T>,ch
     
     template <typename FormatContext>
     auto format(const Moonless::Event& obj, FormatContext& ctx) const {
-        return fmt::format_to(ctx.out(), obj.ToString());
+        return fmt::format_to(ctx.out(),"{}", obj.ToString());
     }
 };
 

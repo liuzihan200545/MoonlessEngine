@@ -18,6 +18,9 @@ project "MoonlessEngine"
     targetdir ("bin/" ..outputdir.. "/%{prj.name}")
     objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
 
+    pchheader "mlpch.h"
+    pchsource "MoonlessEngine/src/mlpch.cpp"
+
     files {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp"
@@ -25,7 +28,8 @@ project "MoonlessEngine"
 
     includedirs {
         "%{wks.location}/include",
-        "MoonlessEngine/src/Moonless"
+        "MoonlessEngine/src/Moonless",
+        "MoonlessEngine/src/"
     }
 
     filter "system:windows"
