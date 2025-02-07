@@ -141,6 +141,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\mlpch.h" />
     <ClInclude Include="src\Moonless.h" />
     <ClInclude Include="src\Moonless\Application.h" />
     <ClInclude Include="src\Moonless\Core.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="src\Moonless\Log.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\mlpch.cpp" />
     <ClCompile Include="src\Moonless\Application.cpp" />
     <ClCompile Include="src\Moonless\Log.cpp" />
   </ItemGroup>

@@ -4,15 +4,16 @@
 #include <spdlog/fmt/ostr.h>
 #include "Core.h"
 #include "Events/ApplicationEvent.h"
+#include <type_traits>
 
-template <>
-struct fmt::formatter<Moonless::WindowResizeEvent> {
+template <class T>
+struct fmt::formatter<T,std::enable_if_t<std::is_base_of_v<Moonless::Event,T>,char>> {
     constexpr auto parse(fmt::format_parse_context& ctx) {
         return ctx.begin();
     }
     
     template <typename FormatContext>
-    auto format(const Moonless::WindowResizeEvent& obj, FormatContext& ctx) const {
+    auto format(const Moonless::Event& obj, FormatContext& ctx) const {
         return fmt::format_to(ctx.out(), obj.ToString());
     }
 };
