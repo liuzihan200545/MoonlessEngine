@@ -32,11 +32,18 @@ project "MoonlessEngine"
         "MoonlessEngine/src/"
     }
 
+    libdirs {
+        "%{wks.location}/lib"
+    }
+
+    links { "glfw3_mt" }
+
     filter "system:windows"
         cppdialect "C++20"
         staticruntime "On"
         systemversion "latest"
         buildoptions { "/utf-8" }
+        linkoptions { "/NODEFAULTLIB:LIBCMT" }
 
         defines{
             "ML_PLATFORM_WINDOWS",

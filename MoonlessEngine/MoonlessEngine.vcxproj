@@ -91,7 +91,10 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug-windows-x86_64\MoonlessEngine\MoonlessEngine.lib</ImportLibrary>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Debug-windows-x86_64\MoonlessEngine\MoonlessEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\MoonlessEngine\MoonlessEngine.dll ..\bin\Debug-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\MoonlessEngine\MoonlessEngine.dll ..\bin\Debug-windows-x86_64\SandBox &gt; nul)</Command>
@@ -114,7 +117,10 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.lib</ImportLibrary>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.dll ..\bin\Release-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.dll ..\bin\Release-windows-x86_64\SandBox &gt; nul)</Command>
@@ -137,7 +143,10 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Dist-windows-x86_64\MoonlessEngine\MoonlessEngine.lib</ImportLibrary>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Dist-windows-x86_64\MoonlessEngine\MoonlessEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\MoonlessEngine\MoonlessEngine.dll ..\bin\Dist-windows-x86_64\SandBox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\MoonlessEngine\MoonlessEngine.dll ..\bin\Dist-windows-x86_64\SandBox &gt; nul)</Command>
@@ -153,6 +162,7 @@
     <ClInclude Include="src\Moonless\Events\KeyEvent.h" />
     <ClInclude Include="src\Moonless\Events\MouseEvent.h" />
     <ClInclude Include="src\Moonless\Log.h" />
+    <ClInclude Include="src\Moonless\Window.h" />
     <ClInclude Include="src\mlpch.h" />
   </ItemGroup>
   <ItemGroup>
