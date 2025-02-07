@@ -12,7 +12,6 @@ int main(int argc,char** argv) {
     Moonless::Log::Init();
 
     ML_CORE_INFO("Moonless Engine launched");
-    ML_CLIENT_ERROR("LOVE={0}", 100);
     
     Moonless::Application* sandbox = Moonless::CreateApplication();
 

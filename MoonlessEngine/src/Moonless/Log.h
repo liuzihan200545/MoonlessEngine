@@ -1,23 +1,37 @@
 #pragma once
 
 #include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 #include "Core.h"
+#include "Events/ApplicationEvent.h"
+
+template <>
+struct fmt::formatter<Moonless::WindowResizeEvent> {
+    constexpr auto parse(fmt::format_parse_context& ctx) {
+        return ctx.begin();
+    }
+    
+    template <typename FormatContext>
+    auto format(const Moonless::WindowResizeEvent& obj, FormatContext& ctx) const {
+        return fmt::format_to(ctx.out(), obj.ToString());
+    }
+};
 
 namespace Moonless
 {
-    class ML_DLL_API Log {
+    // In Log.h
+    class Log {
     public:
-        static void Init();
+        static ML_DLL_API void Init();  // Export Init function
+        
+        static ML_DLL_API std::shared_ptr<spdlog::logger> m_core_logger;
+        static ML_DLL_API std::shared_ptr<spdlog::logger> m_client_logger;
 
-        static std::shared_ptr<spdlog::logger> m_core_logger;
-
-        static std::shared_ptr<spdlog::logger> m_client_logger;
-
-        static std::shared_ptr<spdlog::logger>& get_core_logger() {
+        static ML_DLL_API std::shared_ptr<spdlog::logger>& get_core_logger() {  
             return m_core_logger;
         }
-        
-        static std::shared_ptr<spdlog::logger>& get_client_logger() {
+
+        static ML_DLL_API std::shared_ptr<spdlog::logger>& get_client_logger() {  
             return m_client_logger;
         }
     };

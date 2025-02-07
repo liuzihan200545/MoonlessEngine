@@ -24,7 +24,8 @@ project "MoonlessEngine"
     }
 
     includedirs {
-        "%{wks.location}/include"
+        "%{wks.location}/include",
+        "MoonlessEngine/src/Moonless"
     }
 
     filter "system:windows"

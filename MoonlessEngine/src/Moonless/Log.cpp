@@ -4,8 +4,8 @@
 
 namespace Moonless
 {
-    std::shared_ptr<spdlog::logger> Log::m_core_logger;
-    std::shared_ptr<spdlog::logger> Log::m_client_logger;
+    ML_DLL_API std::shared_ptr<spdlog::logger> Log::m_core_logger;
+    ML_DLL_API std::shared_ptr<spdlog::logger> Log::m_client_logger;
 
     void Log::Init() {
         spdlog::set_pattern("%^[%T] %n: %v%$");

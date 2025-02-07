@@ -9,3 +9,5 @@
 #else
     #error Engine only support Windows Platform. 
 #endif
+
+constexpr int BIT(int x) { return 1 << x; }

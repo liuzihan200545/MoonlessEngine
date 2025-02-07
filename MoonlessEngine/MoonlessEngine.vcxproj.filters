@@ -6,6 +6,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\Moonless.h" />
     <ClInclude Include="src\Moonless\Application.h">
       <Filter>Moonless</Filter>
