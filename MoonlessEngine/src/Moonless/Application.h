@@ -2,16 +2,22 @@
 
 #include "Core.h"
 #include "Log.h"
+#include "Window.h"
 
 namespace Moonless
 {
-    class ML_DLL_API Application {
+    class Application {
     public:
-        Application();
+        ML_DLL_API  Application();
 
-        virtual ~Application();
+        virtual ML_DLL_API  ~Application();
 
-        void run();
+        void ML_DLL_API run();
+
+    private:
+        std::unique_ptr<Window> m_window;
+
+        bool m_running;
     };
 
     Application* CreateApplication();

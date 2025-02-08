@@ -79,7 +79,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -105,7 +105,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -131,7 +131,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -163,11 +163,13 @@
     <ClInclude Include="src\Moonless\Events\MouseEvent.h" />
     <ClInclude Include="src\Moonless\Log.h" />
     <ClInclude Include="src\Moonless\Window.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\mlpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Moonless\Application.cpp" />
     <ClCompile Include="src\Moonless\Log.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mlpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

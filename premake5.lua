@@ -47,7 +47,8 @@ project "MoonlessEngine"
 
         defines{
             "ML_PLATFORM_WINDOWS",
-            "ML_BUILD_DLL"
+            "ML_BUILD_DLL",
+            "ML_ENABLE_ASSERTS"
         }
 
         postbuildcommands{
@@ -91,7 +92,8 @@ project "SandBox"
     buildoptions { "/utf-8" }
 
     defines{
-        "ML_PLATFORM_WINDOWS"
+        "ML_PLATFORM_WINDOWS",
+        "ML_ENABLE_ASSERTS"
     }
 
     links{

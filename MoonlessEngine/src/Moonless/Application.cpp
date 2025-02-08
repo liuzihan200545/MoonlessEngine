@@ -11,20 +11,18 @@
 #include <GLFW/glfw3.h>
 
 Moonless::Application::Application() {
-    
+    m_window = std::unique_ptr<Window>(Window::Create());
 }
 
 Moonless::Application::~Application() {
-    
+        
 }
 
 void Moonless::Application::run() {
-    WindowResizeEvent e(1080,720);
-    AppUpdateEvent e1{};
-    ML_CORE_ERROR(e);
-    ML_CORE_TRACE(e1);
-
-    glfwInit();
-
-    auto window = glfwCreateWindow(1080,720,"Hello Moonless Engine",nullptr,nullptr);
+    while (m_running)
+    {
+        /*glClearColor(0.5f,0.5f,0.8f,1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);*/
+        m_window->OnUpdate();
+    }
 }
