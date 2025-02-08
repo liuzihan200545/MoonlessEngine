@@ -1,20 +1,20 @@
 #pragma once
 
+#include "mlpch.h"
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 #include "Core.h"
-#include "Events/ApplicationEvent.h"
-#include <type_traits>
+#include "Events/Event.h"
 
 template <class T>
-struct fmt::formatter<T,std::enable_if_t<std::is_base_of_v<Moonless::Event,T>,char>> {
+struct fmt::formatter<T, std::enable_if_t<std::is_base_of_v<Moonless::Event, T>, char>> {
     constexpr auto parse(fmt::format_parse_context& ctx) {
         return ctx.begin();
     }
     
     template <typename FormatContext>
     auto format(const Moonless::Event& obj, FormatContext& ctx) const {
-        return fmt::format_to(ctx.out(),"{}", obj.ToString());
+        return fmt::format_to(ctx.out(), "{}", obj.ToString());
     }
 };
 

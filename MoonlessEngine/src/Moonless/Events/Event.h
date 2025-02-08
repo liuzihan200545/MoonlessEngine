@@ -34,7 +34,7 @@ namespace Moonless
     class ML_DLL_API Event
     {
     public:
-        virtual ~Event() = default;
+        virtual ~Event();
 
         bool Handled = false;
 
