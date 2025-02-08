@@ -14,6 +14,8 @@ namespace Moonless
 
         void ML_DLL_API run();
 
+        void ML_DLL_API OnEvent(Event& e);
+
     private:
         std::unique_ptr<Window> m_window;
 

@@ -12,10 +12,14 @@
 
 Moonless::Application::Application() {
     m_window = std::unique_ptr<Window>(Window::Create());
-}
+    m_window->SetEventCallback([this](Event& e)
+    {
+        this->OnEvent(e);
+    });
+}   
 
 Moonless::Application::~Application() {
-        
+    
 }
 
 void Moonless::Application::run() {
@@ -26,3 +30,16 @@ void Moonless::Application::run() {
         m_window->OnUpdate();
     }
 }
+
+void Moonless::Application::OnEvent(Event& e) {
+    EventDispatcher dispatcher(e);
+
+    dispatcher.Dispatch<WindowCloseEvent>([this](WindowCloseEvent& e)->bool
+    {
+        this->m_running = false;
+        return true;
+    });
+
+    ML_CORE_TRACE(e);
+}
+
