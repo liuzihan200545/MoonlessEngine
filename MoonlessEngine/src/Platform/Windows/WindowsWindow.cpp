@@ -1,9 +1,11 @@
 #include "mlpch.h"
+#include "glad/glad.h"
 #include "WindowsWindow.h"
 #include "Log.h"
 #include "Events/ApplicationEvent.h"
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
+
 
 namespace Moonless
 {
@@ -67,6 +69,10 @@ namespace Moonless
         m_window = glfwCreateWindow(m_data.Width,m_data.Height,m_data.Title.c_str(),nullptr,nullptr);
         
         glfwMakeContextCurrent(m_window);
+
+        int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
+
+        ML_CORE_ASSERT(status,"Couldn't Initialize Glad")
 
         glfwSetWindowUserPointer(m_window,&m_data);
 

@@ -10,6 +10,11 @@ workspace "MoonlessEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDirs = {}
+IncludeDirs["Glad"] = "include/glad/include"
+
+include "include/glad"
+
 project "MoonlessEngine"
     location "MoonlessEngine"
     kind "SharedLib"
@@ -29,14 +34,15 @@ project "MoonlessEngine"
     includedirs {
         "%{wks.location}/include",
         "MoonlessEngine/src/Moonless",
-        "MoonlessEngine/src/"
+        "MoonlessEngine/src/",
+        "%{IncludeDirs.Glad}"
     }
 
     libdirs {
         "%{wks.location}/lib"
     }
 
-    links { "glfw3_mt" }
+    links { "glfw3_mt.lib", "Glad" }
 
     filter "system:windows"
         cppdialect "C++20"
@@ -48,7 +54,8 @@ project "MoonlessEngine"
         defines{
             "ML_PLATFORM_WINDOWS",
             "ML_BUILD_DLL",
-            "ML_ENABLE_ASSERTS"
+            "ML_ENABLE_ASSERTS",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands{

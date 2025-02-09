@@ -1,14 +1,10 @@
 #include "mlpch.h"
-
+#include "glad/glad.h"
 #include "Application.h"
-
-#include <GLFW/glfw3.h>
 
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
-
-#include <GLFW/glfw3.h>
 
 Moonless::Application::Application() {
     m_window = std::unique_ptr<Window>(Window::Create());
@@ -16,6 +12,9 @@ Moonless::Application::Application() {
     {
         this->OnEvent(e);
     });
+
+    unsigned int id;
+    glGenVertexArrays(1,&id);
 }   
 
 Moonless::Application::~Application() {
@@ -25,8 +24,8 @@ Moonless::Application::~Application() {
 void Moonless::Application::run() {
     while (m_running)
     {
-        /*glClearColor(0.5f,0.5f,0.8f,1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);*/
+        glClearColor(0.5f,0.5f,0.8f,1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
 
         for (Layer* layer:m_layer_stack)
         {
