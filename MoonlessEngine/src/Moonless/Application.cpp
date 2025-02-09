@@ -27,6 +27,12 @@ void Moonless::Application::run() {
     {
         /*glClearColor(0.5f,0.5f,0.8f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT);*/
+
+        for (Layer* layer:m_layer_stack)
+        {
+            layer->OnUpdate();
+        }
+        
         m_window->OnUpdate();
     }
 }
@@ -40,6 +46,24 @@ void Moonless::Application::OnEvent(Event& e) {
         return true;
     });
 
+    for(auto it = m_layer_stack.rbegin();it!=m_layer_stack.rend();++it)
+    {
+        (*it)->OnEvent(e);
+        if(e.Handled)
+        {
+            break;
+        }
+    }
+
     ML_CORE_TRACE(e);
 }
+
+void Moonless::Application::PushLayer(Layer* layer) {
+    m_layer_stack.PushLayer(layer);
+}
+
+void Moonless::Application::PushOverlay(Layer* layer) {
+    m_layer_stack.PushOverlay(layer);
+}
+
 

@@ -6,6 +6,6 @@ namespace Moonless
 {
     Event::~Event()
     {
-        ML_CORE_INFO("Event Released£¡");
+        //ML_CORE_INFO("Event Released!");
     }
 }

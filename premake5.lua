@@ -57,14 +57,17 @@ project "MoonlessEngine"
 
     filter "configurations:Debug"
         defines "ML_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "ML_RELEASE"
+        buildoptions "/MD"
         symbols "On"
 
     filter "configurations:Dist"
         defines "ML_DIST"
+        buildoptions "/MD"
         symbols "On"
 
 project "SandBox"
@@ -102,12 +105,15 @@ project "SandBox"
 
     filter "configurations:Debug"
         defines "ML_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "ML_RELEASE"
+        buildoptions "/MD"
         symbols "On"
 
     filter "configurations:Dist"
         defines "ML_DIST"
+        buildoptions "/MD"
         symbols "On"

@@ -61,7 +61,7 @@ namespace Moonless
                 ML_CORE_ERROR("GLFW ERROR: {0} with {1}",description,error_code);
             });
 
-            m_is_glfw_initialized = false;
+            m_is_glfw_initialized = true;
         }
 
         m_window = glfwCreateWindow(m_data.Width,m_data.Height,m_data.Title.c_str(),nullptr,nullptr);

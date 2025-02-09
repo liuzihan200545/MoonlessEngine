@@ -37,6 +37,12 @@
     <ClInclude Include="src\Moonless\Events\MouseEvent.h">
       <Filter>Moonless\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Layer.h">
+      <Filter>Moonless</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\LayerStack.h">
+      <Filter>Moonless</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Log.h">
       <Filter>Moonless</Filter>
     </ClInclude>
@@ -50,6 +56,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Moonless\Application.cpp">
+      <Filter>Moonless</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Events\Event.cpp">
+      <Filter>Moonless\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Layer.cpp">
+      <Filter>Moonless</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\LayerStack.cpp">
       <Filter>Moonless</Filter>
     </ClCompile>
     <ClCompile Include="src\Moonless\Log.cpp">
