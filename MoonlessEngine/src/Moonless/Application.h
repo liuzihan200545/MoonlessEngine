@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "LayerStack.h"
 #include "Log.h"
 #include "Window.h"
 
@@ -20,6 +21,8 @@ namespace Moonless
         std::unique_ptr<Window> m_window;
 
         bool m_running;
+
+        LayerStack m_layer_stack;
     };
 
     Application* CreateApplication();

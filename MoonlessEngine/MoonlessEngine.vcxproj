@@ -161,6 +161,8 @@
     <ClInclude Include="src\Moonless\Events\Event.h" />
     <ClInclude Include="src\Moonless\Events\KeyEvent.h" />
     <ClInclude Include="src\Moonless\Events\MouseEvent.h" />
+    <ClInclude Include="src\Moonless\Layer.h" />
+    <ClInclude Include="src\Moonless\LayerStack.h" />
     <ClInclude Include="src\Moonless\Log.h" />
     <ClInclude Include="src\Moonless\Window.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -169,6 +171,8 @@
   <ItemGroup>
     <ClCompile Include="src\Moonless\Application.cpp" />
     <ClCompile Include="src\Moonless\Events\Event.cpp" />
+    <ClCompile Include="src\Moonless\Layer.cpp" />
+    <ClCompile Include="src\Moonless\LayerStack.cpp" />
     <ClCompile Include="src\Moonless\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mlpch.cpp">

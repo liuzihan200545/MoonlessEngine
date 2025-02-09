@@ -1,9 +1,7 @@
 #pragma once
 
+#include "mlpch.h"
 #include "Core.h"
-#include <spdlog/fmt/bundled/core.h>
-#include <string>
-#include <ostream>
 
 namespace Moonless
 {
