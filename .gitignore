@@ -3,7 +3,6 @@
 .idea/
 bin/
 bin-int/
-include
 
 # Files
 *.user
