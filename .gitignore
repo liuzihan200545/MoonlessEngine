@@ -3,6 +3,8 @@
 .idea/
 bin/
 bin-int/
+include/glad/bin
+include/glad/bin-int
 
 # Files
 *.user
