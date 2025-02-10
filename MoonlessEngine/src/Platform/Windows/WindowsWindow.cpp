@@ -6,7 +6,6 @@
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
 
-
 namespace Moonless
 {
 

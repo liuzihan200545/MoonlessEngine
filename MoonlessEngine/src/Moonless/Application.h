@@ -21,12 +21,18 @@ namespace Moonless
 
         void ML_DLL_API PushOverlay(Layer* layer);
 
+        Window& GetWindow() { return *m_window; }
+
+        static Application& get() { return *m_handle; }
+
     private:
         std::unique_ptr<Window> m_window;
 
         bool m_running = true;
 
         LayerStack m_layer_stack;
+
+        static Application* m_handle;
     };
 
     Application* CreateApplication();

@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDirs = {}
 IncludeDirs["Glad"] = "include/glad/include"
+IncludeDirs["Imgui"] = "include/imgui"
 
 include "include/glad"
+include "include/imgui"
 
 project "MoonlessEngine"
     location "MoonlessEngine"
@@ -35,14 +37,15 @@ project "MoonlessEngine"
         "%{wks.location}/include",
         "MoonlessEngine/src/Moonless",
         "MoonlessEngine/src/",
-        "%{IncludeDirs.Glad}"
+        "%{IncludeDirs.Glad}",
+        "%{IncludeDirs.Imgui}",
     }
 
     libdirs {
         "%{wks.location}/lib"
     }
 
-    links { "glfw3_mt.lib", "Glad" }
+    links { "glfw3_mt.lib", "Glad", "Imgui" }
 
     filter "system:windows"
         cppdialect "C++20"

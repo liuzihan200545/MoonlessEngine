@@ -6,15 +6,19 @@
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 
+Moonless::Application* Moonless::Application::m_handle = nullptr;
+
 Moonless::Application::Application() {
+    ML_CORE_ASSERT(!m_handle,"Application already exists.");
+    
+    m_handle = this;
+    
     m_window = std::unique_ptr<Window>(Window::Create());
     m_window->SetEventCallback([this](Event& e)
     {
         this->OnEvent(e);
     });
-
-    unsigned int id;
-    glGenVertexArrays(1,&id);
+    
 }   
 
 Moonless::Application::~Application() {
@@ -59,10 +63,12 @@ void Moonless::Application::OnEvent(Event& e) {
 
 void Moonless::Application::PushLayer(Layer* layer) {
     m_layer_stack.PushLayer(layer);
+    layer->OnAttach();
 }
 
 void Moonless::Application::PushOverlay(Layer* layer) {
     m_layer_stack.PushOverlay(layer);
+    layer->OnAttach();
 }
 
 

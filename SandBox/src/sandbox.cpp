@@ -18,6 +18,8 @@ public:
     Sandbox() {
         ExampleLayer* layer = new ExampleLayer();
         PushLayer(layer);
+        Moonless::ImguiLayer* imgui_layer = new Moonless::ImguiLayer();
+        PushOverlay(imgui_layer);
     }
 
     ~Sandbox() override {

@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -106,7 +106,7 @@
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -132,7 +132,7 @@
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -161,19 +161,23 @@
     <ClInclude Include="src\Moonless\Events\Event.h" />
     <ClInclude Include="src\Moonless\Events\KeyEvent.h" />
     <ClInclude Include="src\Moonless\Events\MouseEvent.h" />
+    <ClInclude Include="src\Moonless\imgui\ImguiLayer.h" />
     <ClInclude Include="src\Moonless\Layer.h" />
     <ClInclude Include="src\Moonless\LayerStack.h" />
     <ClInclude Include="src\Moonless\Log.h" />
     <ClInclude Include="src\Moonless\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\mlpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Moonless\Application.cpp" />
     <ClCompile Include="src\Moonless\Events\Event.cpp" />
+    <ClCompile Include="src\Moonless\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\Moonless\Layer.cpp" />
     <ClCompile Include="src\Moonless\LayerStack.cpp" />
     <ClCompile Include="src\Moonless\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\imgui_impl_opengl3.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mlpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -182,6 +186,9 @@
   <ItemGroup>
     <ProjectReference Include="..\include\glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\include\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
