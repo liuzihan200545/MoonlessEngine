@@ -21,6 +21,8 @@ project "MoonlessEngine"
     location "MoonlessEngine"
     kind "SharedLib"
     language "C++"
+
+    staticruntime "Off"
     
     targetdir ("bin/" ..outputdir.. "/%{prj.name}")
     objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
@@ -49,7 +51,6 @@ project "MoonlessEngine"
 
     filter "system:windows"
         cppdialect "C++20"
-        staticruntime "On"
         systemversion "latest"
         buildoptions { "/utf-8" }
         linkoptions { "/NODEFAULTLIB:LIBCMT" }
@@ -67,23 +68,25 @@ project "MoonlessEngine"
 
     filter "configurations:Debug"
         defines "ML_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "ML_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         symbols "On"
 
     filter "configurations:Dist"
         defines "ML_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         symbols "On"
 
 project "SandBox"
     location "SandBox"
     kind "ConsoleApp"
     language "C++"
+
+    staticruntime "Off"
 
     targetdir ("bin/" ..outputdir.. "/%{prj.name}")
     objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
@@ -100,7 +103,6 @@ project "SandBox"
 
     filter "system:windows"
     cppdialect "C++20"
-    staticruntime "On"
     systemversion "latest"
     buildoptions { "/utf-8" }
 
@@ -115,15 +117,15 @@ project "SandBox"
 
     filter "configurations:Debug"
         defines "ML_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "ML_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         symbols "On"
 
     filter "configurations:Dist"
         defines "ML_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         symbols "On"
