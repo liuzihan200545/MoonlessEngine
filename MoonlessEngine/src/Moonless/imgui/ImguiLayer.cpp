@@ -1,9 +1,14 @@
 #include "mlpch.h"
+#include "glad/glad.h"
 #include "ImguiLayer.h"
 #include "imgui.h"
 #include <Platform/OpenGL/imgui_impl_opengl3.h>
 #include <GLFW/glfw3.h>
 #include <Application.h>
+#include <Events/Event.h>
+#include <Events/ApplicationEvent.h>
+#include <Events/KeyEvent.h>
+#include <Events/MouseEvent.h>
 
 Moonless::ImguiLayer::ImguiLayer() : Layer("Imgui Layer") {
     
@@ -14,7 +19,79 @@ Moonless::ImguiLayer::~ImguiLayer() {
 }
 
 void Moonless::ImguiLayer::OnEvent(Event& event) {
-       
+    ImGuiIO& io = ImGui::GetIO();
+
+    // KeyBoard Events
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<KeyPressedEvent>([&io](KeyPressedEvent& e)
+    {
+        io.KeysDown[e.GetKeyCode()] = true;
+
+        io.KeyAlt = (e.GetKeyCode() == GLFW_KEY_LEFT_ALT) || (e.GetKeyCode() == GLFW_KEY_RIGHT_ALT);
+        io.KeyCtrl = (e.GetKeyCode() == GLFW_KEY_LEFT_CONTROL) || (e.GetKeyCode() == GLFW_KEY_RIGHT_CONTROL);
+        io.KeyShift = (e.GetKeyCode() == GLFW_KEY_LEFT_SHIFT) || (e.GetKeyCode() == GLFW_KEY_RIGHT_SHIFT);
+        io.KeySuper = (e.GetKeyCode() == GLFW_KEY_LEFT_SUPER) || (e.GetKeyCode() == GLFW_KEY_RIGHT_SUPER);
+
+        return false;
+    });
+    
+    dispatcher.Dispatch<KeyReleasedEvent>([&io](KeyReleasedEvent& e)
+    {
+        io.KeysDown[e.GetKeyCode()] = false;
+
+        if (e.GetKeyCode() == GLFW_KEY_LEFT_ALT || e.GetKeyCode() == GLFW_KEY_RIGHT_ALT) io.KeyAlt = false;
+        if (e.GetKeyCode() == GLFW_KEY_LEFT_CONTROL || e.GetKeyCode() == GLFW_KEY_RIGHT_CONTROL) io.KeyCtrl = false;
+        if (e.GetKeyCode() == GLFW_KEY_LEFT_SHIFT || e.GetKeyCode() == GLFW_KEY_RIGHT_SHIFT) io.KeyShift = false;
+        if (e.GetKeyCode() == GLFW_KEY_LEFT_SUPER || e.GetKeyCode() == GLFW_KEY_RIGHT_SUPER) io.KeySuper = false;
+        
+        return false;
+    });
+
+    dispatcher.Dispatch<KeyTypedEvent>([&io](KeyTypedEvent& e)
+    {
+        int keycode = e.GetKeyCode();
+        if(keycode > 0 && keycode < 0x10000)
+        {
+            io.AddInputCharacter(keycode);
+        }
+        return false;
+    });
+
+    // Mouse Events :
+    dispatcher.Dispatch<MouseButtonPressedEvent>([&io](MouseButtonPressedEvent& e)
+    {
+        io.MouseDown[e.GetMouseButton()] = true;
+        return false;
+    });
+
+    dispatcher.Dispatch<MouseButtonReleasedEvent>([&io](MouseButtonReleasedEvent& e)
+    {
+        io.MouseDown[e.GetMouseButton()] = false;
+        return false;
+    });
+
+    dispatcher.Dispatch<MouseMovedEvent>([&io](MouseMovedEvent& e)
+    {
+        io.MousePos = ImVec2(e.GetX(),e.GetY());
+        return false;
+    });
+
+    dispatcher.Dispatch<MouseScrolledEvent>([&io](MouseScrolledEvent& e)
+    {
+        io.MouseWheel += e.GetYOffset() * io.DisplayFramebufferScale.y;
+        io.MouseWheelH += e.GetXOffset() * io.DisplayFramebufferScale.x;
+        return false;
+    });
+
+    // Application Event
+    dispatcher.Dispatch<WindowResizeEvent>([&io](WindowResizeEvent& e)
+    {
+        // TODO: view port size
+        io.DisplaySize = ImVec2(e.GetWidth(),e.GetHeight());
+        io.DisplayFramebufferScale = ImVec2(1.0f,1.0f);
+        glViewport(0,0,e.GetWidth(),e.GetHeight());
+        return false;
+    });
 }
 
 void Moonless::ImguiLayer::OnUpdate() {

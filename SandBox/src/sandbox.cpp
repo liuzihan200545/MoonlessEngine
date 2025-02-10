@@ -5,11 +5,11 @@ public:
     ExampleLayer() : Layer("Example"){}
 
     void OnUpdate() override {
-        ML_CLIENT_INFO("Example Layer OnUpdate");
+        //ML_CLIENT_INFO("Example Layer OnUpdate");
     }
 
     void OnEvent(Moonless::Event& event) override {
-        ML_CLIENT_TRACE(event);
+        //ML_CLIENT_TRACE(event);
     }
 };
 

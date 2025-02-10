@@ -158,6 +158,14 @@ namespace Moonless
             MouseMovedEvent e(static_cast<float>(xpos),static_cast<float>(ypos)); 
             data.EventCallback(e);
         });
+
+        glfwSetCharCallback(m_window,[](GLFWwindow* window, unsigned int codepoint)
+        {
+            WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+
+            KeyTypedEvent e(codepoint);
+            data.EventCallback(e);
+        });
     }
 
     void WindowsWindow::ShutDown() {

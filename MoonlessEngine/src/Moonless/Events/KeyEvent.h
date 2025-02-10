@@ -24,7 +24,7 @@ namespace Moonless
     public:
         KeyPressedEvent(const int keycode, int repeat_count)
             : KeyEvent(keycode), m_repeat_count(repeat_count) {}
-
+        
         int RepeatCount() const { return m_repeat_count; }
 
         std::string ToString() const override
