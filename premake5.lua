@@ -1,5 +1,5 @@
 workspace "MoonlessEngine"
-    startproject "SandBox"
+    startproject "Sandbox"
     architecture "x64"
 
     configurations{
@@ -14,8 +14,10 @@ IncludeDirs = {}
 IncludeDirs["Glad"] = "include/glad/include"
 IncludeDirs["Imgui"] = "include/imgui"
 
-include "include/glad"
-include "include/imgui"
+group "dependencies"
+    include "include/glad"
+    include "include/imgui"
+group ""
 
 project "MoonlessEngine"
     location "MoonlessEngine"
@@ -63,7 +65,7 @@ project "MoonlessEngine"
         }
 
         postbuildcommands{
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" ..outputdir .. "/SandBox")
+            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
         }
 
     filter "configurations:Debug"
