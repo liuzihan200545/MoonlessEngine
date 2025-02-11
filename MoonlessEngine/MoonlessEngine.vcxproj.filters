@@ -7,11 +7,17 @@
     <Filter Include="Moonless\Events">
       <UniqueIdentifier>{B93A78F5-25C6-E5B9-2ED7-68AE9AE141BA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Moonless\Renderer">
+      <UniqueIdentifier>{BBDB6C2B-27F2-6AC1-7069-F6E2DCBE3B49}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Moonless\imgui">
       <UniqueIdentifier>{9F951DA5-8B63-11AB-74F7-81D16064ED0F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -58,6 +64,12 @@
     <ClInclude Include="src\Moonless\MouseButtonCodes.h">
       <Filter>Moonless</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\GraphicsContext.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\Shader.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Window.h">
       <Filter>Moonless</Filter>
     </ClInclude>
@@ -69,6 +81,9 @@
     </ClInclude>
     <ClInclude Include="src\Moonless\imgui\imgui_impl_opengl3.h">
       <Filter>Moonless\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>Platform\Windows</Filter>
@@ -94,6 +109,9 @@
     <ClCompile Include="src\Moonless\Log.cpp">
       <Filter>Moonless</Filter>
     </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\Shader.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Moonless\imgui\ImguiLayer.cpp">
       <Filter>Moonless\imgui</Filter>
     </ClCompile>
@@ -102,6 +120,9 @@
     </ClCompile>
     <ClCompile Include="src\Moonless\imgui\imgui_impl_opengl3.cpp">
       <Filter>Moonless\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>Platform\Windows</Filter>

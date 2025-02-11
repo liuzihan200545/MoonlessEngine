@@ -5,6 +5,7 @@
 #include "Log.h"
 #include "Window.h"
 #include "imgui/ImguiLayer.h"
+#include "Renderer/Shader.h"
 
 namespace Moonless
 {
@@ -38,6 +39,7 @@ namespace Moonless
         static Application* m_handle;
     private:
         unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+        std::unique_ptr<Shader> m_shader;
     };
 
     Application* CreateApplication();

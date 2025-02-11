@@ -4,10 +4,13 @@ Moonless Engine is a 2D engine aimed to simplify the workflow of developing 2D g
 
 ## Features:
 - Event System
-- Imgui System
+- ImGui System
 - Docking System
-- Linux and Mac Support( to do )
-- Vulkan Support( to do )
+- Shader System
+
+## Future Features:
+- Linux and Mac Support
+- Vulkan Support
 
 ### support platforms:
-windows only
+- windows only
