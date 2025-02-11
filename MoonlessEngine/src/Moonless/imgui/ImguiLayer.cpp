@@ -69,7 +69,7 @@ void Moonless::ImguiLayer::Begin() {
 void Moonless::ImguiLayer::End() {
     ImGuiIO& io = ImGui::GetIO();
     Application& app = Application::get();
-    io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
+    io.DisplaySize = ImVec2(static_cast<float>(app.GetWindow().GetWidth()), static_cast<float>(app.GetWindow().GetHeight()));
 
     // Rendering
     ImGui::Render();

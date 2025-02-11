@@ -3,10 +3,14 @@
 constexpr int BIT(int x) { return 1 << x; }
 
 #ifdef ML_PLATFORM_WINDOWS
-    #ifdef ML_BUILD_DLL
-        #define ML_DLL_API __declspec(dllexport)
+    #if ML_DYNAMIC_LINK
+        #ifdef ML_BUILD_DLL
+            #define ML_DLL_API __declspec(dllexport)
+        #else
+            #define ML_DLL_API __declspec(dllimport)
+        #endif
     #else
-        #define ML_DLL_API __declspec(dllimport)
+        #define ML_DLL_API 
     #endif
 #else
     #error Engine only support Windows Platform. 

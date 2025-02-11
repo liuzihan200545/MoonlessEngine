@@ -8,6 +8,10 @@ workspace "MoonlessEngine"
         "Dist"
     }
 
+    defines{
+        "_CRT_SECURE_NO_WARNINGS"
+    }
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDirs = {}
@@ -21,10 +25,10 @@ group ""
 
 project "MoonlessEngine"
     location "MoonlessEngine"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
-
-    staticruntime "Off"
+    staticruntime "on"
+    cppdialect "C++20"
     
     targetdir ("bin/" ..outputdir.. "/%{prj.name}")
     objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
@@ -52,20 +56,14 @@ project "MoonlessEngine"
     links { "glfw3_mt.lib", "Glad", "Imgui" }
 
     filter "system:windows"
-        cppdialect "C++20"
         systemversion "latest"
         buildoptions { "/utf-8" }
-        linkoptions { "/NODEFAULTLIB:LIBCMT" }
 
         defines{
             "ML_PLATFORM_WINDOWS",
             "ML_BUILD_DLL",
             "ML_ENABLE_ASSERTS",
             "GLFW_INCLUDE_NONE"
-        }
-
-        postbuildcommands{
-            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
         }
 
     filter "configurations:Debug"
@@ -83,12 +81,14 @@ project "MoonlessEngine"
         runtime "Release"
         symbols "On"
 
+    linkoptions { "/NODEFAULTLIB:LIBCMT" }
+
 project "SandBox"
     location "SandBox"
     kind "ConsoleApp"
     language "C++"
 
-    staticruntime "Off"
+    staticruntime "on"
 
     targetdir ("bin/" ..outputdir.. "/%{prj.name}")
     objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
@@ -131,3 +131,5 @@ project "SandBox"
         defines "ML_DIST"
         runtime "Release"
         symbols "On"
+
+    linkoptions { "/NODEFAULTLIB:LIBCMT" }

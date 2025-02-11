@@ -23,19 +23,19 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -54,36 +54,33 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Debug-windows-x86_64\MoonlessEngine\</OutDir>
     <IntDir>..\bin-int\Debug-windows-x86_64\MoonlessEngine\</IntDir>
     <TargetName>MoonlessEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Release-windows-x86_64\MoonlessEngine\</OutDir>
     <IntDir>..\bin-int\Release-windows-x86_64\MoonlessEngine\</IntDir>
     <TargetName>MoonlessEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Dist-windows-x86_64\MoonlessEngine\</OutDir>
     <IntDir>..\bin-int\Dist-windows-x86_64\MoonlessEngine\</IntDir>
     <TargetName>MoonlessEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -91,25 +88,22 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
       <AdditionalDependencies>glfw3_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\MoonlessEngine\MoonlessEngine.lib</ImportLibrary>
-      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
-    </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\MoonlessEngine\MoonlessEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\MoonlessEngine\MoonlessEngine.dll "..\bin\Debug-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\MoonlessEngine\MoonlessEngine.dll "..\bin\Debug-windows-x86_64\Sandbox\" &gt; nul)</Command>
-    </PostBuildEvent>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -117,25 +111,22 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
       <AdditionalDependencies>glfw3_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.lib</ImportLibrary>
-      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
-    </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.dll "..\bin\Release-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.dll "..\bin\Release-windows-x86_64\Sandbox\" &gt; nul)</Command>
-    </PostBuildEvent>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -143,14 +134,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
       <AdditionalDependencies>glfw3_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\MoonlessEngine\MoonlessEngine.lib</ImportLibrary>
       <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
-    </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\MoonlessEngine\MoonlessEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\MoonlessEngine\MoonlessEngine.dll "..\bin\Dist-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\MoonlessEngine\MoonlessEngine.dll "..\bin\Dist-windows-x86_64\Sandbox\" &gt; nul)</Command>
-    </PostBuildEvent>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Moonless.h" />
@@ -161,8 +150,6 @@
     <ClInclude Include="src\Moonless\Events\Event.h" />
     <ClInclude Include="src\Moonless\Events\KeyEvent.h" />
     <ClInclude Include="src\Moonless\Events\MouseEvent.h" />
-    <ClInclude Include="src\Moonless\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="src\Moonless\imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Moonless\Input.h" />
     <ClInclude Include="src\Moonless\KeyCodes.h" />
     <ClInclude Include="src\Moonless\Layer.h" />
@@ -171,6 +158,8 @@
     <ClInclude Include="src\Moonless\MouseButtonCodes.h" />
     <ClInclude Include="src\Moonless\Window.h" />
     <ClInclude Include="src\Moonless\imgui\ImguiLayer.h" />
+    <ClInclude Include="src\Moonless\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="src\Moonless\imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\mlpch.h" />
@@ -178,86 +167,12 @@
   <ItemGroup>
     <ClCompile Include="src\Moonless\Application.cpp" />
     <ClCompile Include="src\Moonless\Events\Event.cpp" />
-    <ClCompile Include="src\Moonless\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="src\Moonless\imgui\imgui_impl_opengl3.cpp">
-      <AssemblerOutput>NoListing</AssemblerOutput>
-      <AssemblerListingLocation>..\bin-int\Release-windows-x86_64\MoonlessEngine\</AssemblerListingLocation>
-      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
-      <BrowseInformation>false</BrowseInformation>
-      <BrowseInformationFile>..\bin-int\Release-windows-x86_64\MoonlessEngine\</BrowseInformationFile>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <CompileAs>Default</CompileAs>
-      <ConformanceMode>Default</ConformanceMode>
-      <DiagnosticsFormat>Column</DiagnosticsFormat>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <ErrorReporting>Prompt</ErrorReporting>
-      <ExpandAttributedSource>false</ExpandAttributedSource>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <EnableASAN>false</EnableASAN>
-      <EnableFuzzer>false</EnableFuzzer>
-      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Precise</FloatingPointModel>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <GenerateModuleDependencies>false</GenerateModuleDependencies>
-      <GenerateSourceDependencies>false</GenerateSourceDependencies>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
-      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>Default</LanguageStandard_C>
-      <MinimalRebuild>false</MinimalRebuild>
-      <ModuleDependenciesFile>..\bin-int\Release-windows-x86_64\MoonlessEngine\</ModuleDependenciesFile>
-      <ModuleOutputFile>..\bin-int\Release-windows-x86_64\MoonlessEngine\</ModuleOutputFile>
-      <OmitDefaultLibName>false</OmitDefaultLibName>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-      <Optimization>Disabled</Optimization>
-      <ObjectFileName>..\bin-int\Release-windows-x86_64\MoonlessEngine\</ObjectFileName>
-      <CallingConvention>Cdecl</CallingConvention>
-      <ProgramDataBaseFileName>..\bin-int\Release-windows-x86_64\MoonlessEngine\vc143.pdb</ProgramDataBaseFileName>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>..\bin-int\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.pch</PrecompiledHeaderOutputFile>
-      <PreprocessToFile>false</PreprocessToFile>
-      <PreprocessKeepComments>false</PreprocessKeepComments>
-      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
-      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
-      <ShowIncludes>false</ShowIncludes>
-      <SourceDependenciesFile>..\bin-int\Release-windows-x86_64\MoonlessEngine\</SourceDependenciesFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <SpectreMitigation>false</SpectreMitigation>
-      <StructMemberAlignment>Default</StructMemberAlignment>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <TrackerLogDirectory>..\bin-int\Release-windows-x86_64\MoonlessEngine\MoonlessEngine.tlog\</TrackerLogDirectory>
-      <TranslateIncludes>false</TranslateIncludes>
-      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <UseFullPaths>true</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <XMLDocumentationFileName>..\bin-int\Release-windows-x86_64\MoonlessEngine\</XMLDocumentationFileName>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <IntelJCCErratum>false</IntelJCCErratum>
-      <BuildStlModules>false</BuildStlModules>
-      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
-      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
-      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
-      <PreprocessorDefinitions>ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_RELEASE;_WINDLL;_UNICODE;UNICODE;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 </AdditionalOptions>
-      <LinkCompiled>true</LinkCompiled>
-    </ClCompile>
     <ClCompile Include="src\Moonless\Layer.cpp" />
     <ClCompile Include="src\Moonless\LayerStack.cpp" />
     <ClCompile Include="src\Moonless\Log.cpp" />
     <ClCompile Include="src\Moonless\imgui\ImguiLayer.cpp" />
+    <ClCompile Include="src\Moonless\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\Moonless\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mlpch.cpp">
@@ -271,9 +186,6 @@
     <ProjectReference Include="..\include\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\Platform\OpenGL\" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
