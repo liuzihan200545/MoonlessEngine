@@ -1,26 +1,28 @@
 #include <Moonless.h>
 #include <GLFW/glfw3.h>
 
+#include "Moonless/Events/KeyEvent.h"
+
 class ExampleLayer : public Moonless::Layer {
 public:
     ExampleLayer() : Layer("Example"){}
 
     void OnUpdate() override {
         //ML_CLIENT_INFO("Example Layer OnUpdate");
-        if(Moonless::Input::IsKeyPressed(GLFW_KEY_TAB))
-        {
-            ML_CORE_ERROR("TAB KEY is Pressed!");
-        }
-
-        if(Moonless::Input::IsMouseButtonPressed(GLFW_MOUSE_BUTTON_1))
-        {
-            ML_CORE_ERROR("Mouse Left Pressed");
-        }
-        
     }
 
     void OnEvent(Moonless::Event& event) override {
-        //ML_CLIENT_TRACE(event);
+        Moonless::EventDispatcher dispatcher(event);
+        dispatcher.Dispatch<Moonless::KeyPressedEvent>([](Moonless::KeyPressedEvent& event)
+        {
+            if(event.GetKeyCode() == ML_KEY_TAB)
+            {
+                ML_CORE_ERROR("TAB KEY is Pressed!");
+                
+            }
+            ML_CORE_ERROR("{} KEY IS RELEASED",static_cast<char>(event.GetKeyCode()));
+            return false;
+        });
     }
 };
 
