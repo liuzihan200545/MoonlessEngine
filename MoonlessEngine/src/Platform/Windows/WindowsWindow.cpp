@@ -70,9 +70,7 @@ namespace Moonless
         
         m_context = new OpenGLContext(m_window);
 
-        glfwMakeContextCurrent(m_window);
-        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-        ML_CORE_ASSERT(status, "Failed to initialize Glad!");
+        m_context->Init();
 
         glfwSetWindowUserPointer(m_window,&m_data);
 

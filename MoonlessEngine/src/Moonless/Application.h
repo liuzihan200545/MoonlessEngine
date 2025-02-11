@@ -36,6 +36,8 @@ namespace Moonless
         LayerStack m_layer_stack;
 
         static Application* m_handle;
+    private:
+        unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
     };
 
     Application* CreateApplication();

@@ -1,6 +1,7 @@
 #include <Moonless.h>
 #include <GLFW/glfw3.h>
 
+#include "imgui/imgui.h"
 #include "Moonless/Events/KeyEvent.h"
 
 class ExampleLayer : public Moonless::Layer {
@@ -18,6 +19,11 @@ public:
             ML_CORE_ERROR("{} KEY IS RELEASED",static_cast<char>(event.GetKeyCode()));
             return false;
         });
+    }
+
+    void OnImGuiRender() override {
+        ImGui::Begin("hello");
+        ImGui::End();
     }
 };
 
