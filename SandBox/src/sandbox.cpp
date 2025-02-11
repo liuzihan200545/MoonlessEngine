@@ -1,4 +1,5 @@
 #include <Moonless.h>
+#include <GLFW/glfw3.h>
 
 class ExampleLayer : public Moonless::Layer {
 public:
@@ -6,6 +7,16 @@ public:
 
     void OnUpdate() override {
         //ML_CLIENT_INFO("Example Layer OnUpdate");
+        if(Moonless::Input::IsKeyPressed(GLFW_KEY_TAB))
+        {
+            ML_CORE_ERROR("TAB KEY is Pressed!");
+        }
+
+        if(Moonless::Input::IsMouseButtonPressed(GLFW_MOUSE_BUTTON_1))
+        {
+            ML_CORE_ERROR("Mouse Left Pressed");
+        }
+        
     }
 
     void OnEvent(Moonless::Event& event) override {

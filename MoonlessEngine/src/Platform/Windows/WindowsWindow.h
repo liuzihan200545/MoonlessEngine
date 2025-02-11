@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Moonless/Window.h"
-#include <GLFW/glfw3.h>GIT 
+#include <GLFW/glfw3.h>
 
 namespace Moonless
 {
@@ -25,7 +25,7 @@ namespace Moonless
             return m_data.VSync;
         }
 
-        virtual void* GetNativeWindow() const {
+        void* GetNativeWindow() override {
             return m_window;
         }
     private:
