@@ -5,6 +5,7 @@
 #include "Events/ApplicationEvent.h"
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Moonless
 {
@@ -25,7 +26,7 @@ namespace Moonless
 
     void WindowsWindow::OnUpdate() {
         glfwPollEvents();
-        glfwSwapBuffers(m_window);
+        m_context->SwapBuffers();
     }
 
     void WindowsWindow::SetEventCallback(const EventCallbackFn& callback_fn) {
@@ -67,11 +68,11 @@ namespace Moonless
 
         m_window = glfwCreateWindow(m_data.Width,m_data.Height,m_data.Title.c_str(),nullptr,nullptr);
         
+        m_context = new OpenGLContext(m_window);
+
         glfwMakeContextCurrent(m_window);
-
-        int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
-
-        ML_CORE_ASSERT(status,"Couldn't Initialize Glad")
+        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+        ML_CORE_ASSERT(status, "Failed to initialize Glad!");
 
         glfwSetWindowUserPointer(m_window,&m_data);
 

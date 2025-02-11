@@ -2,6 +2,7 @@
 
 #include "Moonless/Window.h"
 #include <GLFW/glfw3.h>
+#include "Renderer/GraphicsContext.h"
 
 namespace Moonless
 {
@@ -33,6 +34,8 @@ namespace Moonless
         virtual void ShutDown();
     private:
         GLFWwindow* m_window;
+
+        GraphicsContext* m_context;
         
         struct WindowData
         {

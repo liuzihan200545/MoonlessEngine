@@ -156,10 +156,12 @@
     <ClInclude Include="src\Moonless\LayerStack.h" />
     <ClInclude Include="src\Moonless\Log.h" />
     <ClInclude Include="src\Moonless\MouseButtonCodes.h" />
+    <ClInclude Include="src\Moonless\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Moonless\Window.h" />
     <ClInclude Include="src\Moonless\imgui\ImguiLayer.h" />
     <ClInclude Include="src\Moonless\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="src\Moonless\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\mlpch.h" />
@@ -173,6 +175,7 @@
     <ClCompile Include="src\Moonless\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\Moonless\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\Moonless\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mlpch.cpp">
