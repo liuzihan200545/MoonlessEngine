@@ -9,11 +9,13 @@ namespace Moonless
     public:
         ML_DLL_API ImguiLayer();
         ~ImguiLayer();
-
-        void OnEvent(Event& event) override;
-        void OnUpdate() override;
+        
         void OnAttach() override;
         void OnDetach() override;
+        void OnImGuiRender() override;
+
+        void Begin();
+        void End();
 
     private:
         float m_time = 0.0f;

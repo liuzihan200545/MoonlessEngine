@@ -15,11 +15,6 @@ public:
         Moonless::EventDispatcher dispatcher(event);
         dispatcher.Dispatch<Moonless::KeyPressedEvent>([](Moonless::KeyPressedEvent& event)
         {
-            if(event.GetKeyCode() == ML_KEY_TAB)
-            {
-                ML_CORE_ERROR("TAB KEY is Pressed!");
-                
-            }
             ML_CORE_ERROR("{} KEY IS RELEASED",static_cast<char>(event.GetKeyCode()));
             return false;
         });
@@ -31,8 +26,6 @@ public:
     Sandbox() {
         ExampleLayer* layer = new ExampleLayer();
         PushLayer(layer);
-        Moonless::ImguiLayer* imgui_layer = new Moonless::ImguiLayer();
-        PushOverlay(imgui_layer);
     }
 
     ~Sandbox() override {

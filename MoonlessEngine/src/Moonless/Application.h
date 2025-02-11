@@ -4,6 +4,7 @@
 #include "LayerStack.h"
 #include "Log.h"
 #include "Window.h"
+#include "imgui/ImguiLayer.h"
 
 namespace Moonless
 {
@@ -27,6 +28,8 @@ namespace Moonless
 
     private:
         std::unique_ptr<Window> m_window;
+
+        ImguiLayer* m_imgui_layer;
 
         bool m_running = true;
 

@@ -6,6 +6,10 @@
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 
+#include "Input.h"
+#include "KeyCodes.h"
+
+
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
 Moonless::Application::Application() {
@@ -18,6 +22,9 @@ Moonless::Application::Application() {
     {
         this->OnEvent(e);
     });
+
+    m_imgui_layer = new ImguiLayer();
+    PushOverlay(m_imgui_layer);
     
 }   
 
@@ -35,6 +42,15 @@ void Moonless::Application::run() {
         {
             layer->OnUpdate();
         }
+
+        m_imgui_layer->Begin();
+
+        for(Layer* layer : m_layer_stack)
+        {
+            layer->OnImGuiRender();
+        }
+        
+        m_imgui_layer->End();
         
         m_window->OnUpdate();
     }
