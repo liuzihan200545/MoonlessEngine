@@ -64,7 +64,13 @@
     <ClInclude Include="src\Moonless\MouseButtonCodes.h">
       <Filter>Moonless</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\Buffer.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\GraphicsContext.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\Renderer.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\Shader.h">
@@ -81,6 +87,9 @@
     </ClInclude>
     <ClInclude Include="src\Moonless\imgui\imgui_impl_opengl3.h">
       <Filter>Moonless\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>Platform\OpenGL</Filter>
@@ -109,6 +118,12 @@
     <ClCompile Include="src\Moonless\Log.cpp">
       <Filter>Moonless</Filter>
     </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\Buffer.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\Renderer.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\Shader.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
@@ -120,6 +135,9 @@
     </ClCompile>
     <ClCompile Include="src\Moonless\imgui\imgui_impl_opengl3.cpp">
       <Filter>Moonless\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>Platform\OpenGL</Filter>

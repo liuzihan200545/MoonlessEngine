@@ -11,6 +11,8 @@
 
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
+
+
 Moonless::Application::Application() {
     ML_CORE_ASSERT(!m_handle,"Application already exists.")
     
@@ -35,9 +37,27 @@ Moonless::Application::Application() {
     };
 
     m_VertexBuffer.reset(VertexBuffer::Create(vertices,sizeof(vertices)));
-    
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
+    {
+        BufferLayout layout = {
+            { ShaderDataType::Float3, "position"}
+        };
+        m_VertexBuffer->SetLayout(layout);
+    }
+
+    uint32_t index = 0;
+    const auto& layout = m_VertexBuffer->GetLayout();
+    for (const auto& element : layout)
+    {
+        glEnableVertexAttribArray(index);
+        glVertexAttribPointer(index,
+            element.GetComponentCount(),
+            ShaderDataTypeToOpenGLBaseType(element.type),
+            element.normalized ? GL_TRUE : GL_FALSE,
+            layout.getStride(),
+            reinterpret_cast<const void*>(element.offset));
+        index++;
+    }
     
     unsigned int indices[3] = { 0, 1, 2 };
 
@@ -137,5 +157,6 @@ void Moonless::Application::PushOverlay(Layer* layer) {
     m_layer_stack.PushOverlay(layer);
     layer->OnAttach();
 }
+
 
 
