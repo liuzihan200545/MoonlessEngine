@@ -16,7 +16,7 @@ Moonless::Application::Application() {
     
     m_handle = this;
     
-    m_window = std::unique_ptr<Window>(Window::Create());
+    m_window.reset(Window::Create());
     m_window->SetEventCallback([this](Event& e)
     {
         this->OnEvent(e);
