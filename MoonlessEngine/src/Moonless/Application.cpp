@@ -30,17 +30,18 @@ Moonless::Application::Application() {
     glGenVertexArrays(1, &m_VertexArray);
     glBindVertexArray(m_VertexArray);
     
-    float vertices[3 * 3] = {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
+    float vertices[3 * 7] = {
+        -0.5f, -0.5f, 0.0f, 0.5f,0.5f,0.8f,1.0f,
+         0.5f, -0.5f, 0.0f, 0.5f,0.5f,0.8f,1.0f,
+         0.0f,  0.5f, 0.0f, 0.5f,0.5f,0.8f,1.0f
     };
 
     m_VertexBuffer.reset(VertexBuffer::Create(vertices,sizeof(vertices)));
 
     {
         BufferLayout layout = {
-            { ShaderDataType::Float3, "position"}
+            { ShaderDataType::Float3, "position"},
+            { ShaderDataType::Float4, "color"}
         };
         m_VertexBuffer->SetLayout(layout);
     }
@@ -67,21 +68,26 @@ Moonless::Application::Application() {
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec4 a_Color;
 			out vec3 v_Position;
+            out vec4 v_Color;
 			void main()
 			{
 				v_Position = a_Position;
+                v_Color = a_Color;
 				gl_Position = vec4(a_Position, 1.0);	
 			}
 		)";
     std::string fragmentSrc = R"(
 			#version 330 core
+
+            in vec4 v_Color;
 			
 			layout(location = 0) out vec4 color;
 			in vec3 v_Position;
 			void main()
 			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+				color = v_Color;
 			}
 		)";
     m_shader.reset(new Shader(vertexSrc, fragmentSrc));
