@@ -1,4 +1,18 @@
 #include "mlpch.h"
 #include "Renderer.h"
 
-Moonless::RendererAPI Moonless::Renderer::s_RendererAPI = Moonless::RendererAPI::OpenGL;
+#include "RenderCommand.h"
+
+
+void Moonless::Renderer::BeginScene() {
+    
+}
+
+void Moonless::Renderer::EndScene() {
+    
+}
+
+void Moonless::Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray) {
+    vertexArray->Bind();
+    RenderCommand::DrawIndexed(vertexArray);
+}

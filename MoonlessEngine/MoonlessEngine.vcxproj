@@ -158,6 +158,8 @@
     <ClInclude Include="src\Moonless\MouseButtonCodes.h" />
     <ClInclude Include="src\Moonless\Renderer\Buffer.h" />
     <ClInclude Include="src\Moonless\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Moonless\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Moonless\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Moonless\Renderer\Renderer.h" />
     <ClInclude Include="src\Moonless\Renderer\Shader.h" />
     <ClInclude Include="src\Moonless\Window.h" />
@@ -178,7 +180,9 @@
     <ClCompile Include="src\Moonless\LayerStack.cpp" />
     <ClCompile Include="src\Moonless\Log.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Moonless\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Moonless\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Shader.cpp" />
     <ClCompile Include="src\Moonless\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\Moonless\imgui\imgui_impl_glfw.cpp" />
@@ -186,6 +190,7 @@
     <ClCompile Include="src\Moonless\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
@@ -203,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\Moonless\Renderer\VertexArray.h" />
+    <Content Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

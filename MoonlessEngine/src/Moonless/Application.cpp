@@ -7,6 +7,8 @@
 #include "Log.h"
 
 #include "Input.h"
+#include "Renderer/RenderCommand.h"
+#include "Renderer/Renderer.h"
 
 
 Moonless::Application* Moonless::Application::m_handle = nullptr;
@@ -140,19 +142,18 @@ Moonless::Application::~Application() {
 void Moonless::Application::run() {
     while (m_running)
     {
-        glClearColor(0.1f,0.1f,0.1f,1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        RenderCommand::SetClearColor({0.1f,0.1f,0.1f,1.0f});
+    	RenderCommand::Clear();
 
-        m_Shader->Bind();
-        m_VertexArray->Bind();
-        
-        glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount() , GL_UNSIGNED_INT, nullptr);
+    	Renderer::BeginScene();
 
+    	m_Shader->Bind();
+    	Renderer::Submit(m_VertexArray);
+    	
 		m_BlueShader->Bind();
-    	m_SquareVA->Bind();
-
-    	glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount() , GL_UNSIGNED_INT, nullptr);
-
+		Renderer::Submit(m_SquareVA);
+    	
+    	Renderer::EndScene();
     	
         for (Layer* layer:m_layer_stack)
         {
