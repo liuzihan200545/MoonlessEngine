@@ -11,8 +11,6 @@
 
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
-
-
 Moonless::Application::Application() {
     ML_CORE_ASSERT(!m_handle,"Application already exists.")
     
@@ -27,8 +25,7 @@ Moonless::Application::Application() {
     m_imgui_layer = new ImguiLayer();
     PushOverlay(m_imgui_layer);
 
-    glGenVertexArrays(1, &m_VertexArray);
-    glBindVertexArray(m_VertexArray);
+    m_VertexArray.reset(VertexArray::Create());
     
     float vertices[3 * 7] = {
         -0.5f, -0.5f, 0.0f, 0.5f,0.5f,0.8f,1.0f,
@@ -36,34 +33,23 @@ Moonless::Application::Application() {
          0.0f,  0.5f, 0.0f, 0.5f,0.5f,0.8f,1.0f
     };
 
-    m_VertexBuffer.reset(VertexBuffer::Create(vertices,sizeof(vertices)));
+    std::shared_ptr<VertexBuffer> vertexBuffer;
+    vertexBuffer.reset(VertexBuffer::Create(vertices,sizeof(vertices)));
 
-    {
-        BufferLayout layout = {
-            { ShaderDataType::Float3, "position"},
-            { ShaderDataType::Float4, "color"}
-        };
-        m_VertexBuffer->SetLayout(layout);
-    }
-
-    uint32_t index = 0;
-    const auto& layout = m_VertexBuffer->GetLayout();
-    for (const auto& element : layout)
-    {
-        glEnableVertexAttribArray(index);
-        glVertexAttribPointer(index,
-            element.GetComponentCount(),
-            ShaderDataTypeToOpenGLBaseType(element.type),
-            element.normalized ? GL_TRUE : GL_FALSE,
-            layout.getStride(),
-            reinterpret_cast<const void*>(element.offset));
-        index++;
-    }
+    BufferLayout layout = {
+        { ShaderDataType::Float3, "position"},
+        { ShaderDataType::Float4, "color"}
+    };
+    vertexBuffer->SetLayout(layout);
     
     unsigned int indices[3] = { 0, 1, 2 };
 
-    m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+    std::shared_ptr<IndexBuffer> indexBuffer;
+    indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
+    m_VertexArray->AddVertexBuffer(vertexBuffer);
+    m_VertexArray->SetIndexBuffer(indexBuffer);
+    
     std::string vertexSrc = R"(
 			#version 330 core
 			
@@ -90,7 +76,61 @@ Moonless::Application::Application() {
 				color = v_Color;
 			}
 		)";
-    m_shader.reset(new Shader(vertexSrc, fragmentSrc));
+    m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
+
+    // object2:
+    m_SquareVA.reset(VertexArray::Create());
+
+    float squareVertices[3 * 4] = {
+        -0.1f, -0.1f, 0.0f,
+         0.1f, -0.1f, 0.0f,
+         0.1f,  0.1f, 0.0f,
+        -0.1f,  0.1f, 0.0f
+    };
+
+    std::shared_ptr<VertexBuffer> square_vb;
+    square_vb.reset(VertexBuffer::Create(squareVertices,sizeof(squareVertices)));
+
+    square_vb->SetLayout({
+            { ShaderDataType::Float3, "a_Position" }
+    });
+    
+    uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+    
+    std::shared_ptr<IndexBuffer> square_ib;
+    square_ib.reset(IndexBuffer::Create(squareIndices,sizeof(squareIndices)/sizeof(uint32_t)));
+
+    m_SquareVA->AddVertexBuffer(square_vb);
+    m_SquareVA->SetIndexBuffer(square_ib);
+
+    std::string blueShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+
+			out vec3 v_Position;
+
+			void main()
+			{
+				v_Position = a_Position;
+				gl_Position = vec4(a_Position, 1.0);	
+			}
+		)";
+
+    std::string blueShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec3 v_Position;
+
+			void main()
+			{
+				color = vec4(0.2, 0.3, 0.8, 1.0);
+			}
+		)";
+
+	m_BlueShader = std::make_shared<Shader>(blueShaderVertexSrc,blueShaderFragmentSrc);
 }
 
 Moonless::Application::~Application() {
@@ -103,11 +143,17 @@ void Moonless::Application::run() {
         glClearColor(0.1f,0.1f,0.1f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        m_shader->Bind();
-        glBindVertexArray(m_VertexArray);
+        m_Shader->Bind();
+        m_VertexArray->Bind();
         
-        glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount() , GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount() , GL_UNSIGNED_INT, nullptr);
 
+		m_BlueShader->Bind();
+    	m_SquareVA->Bind();
+
+    	glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount() , GL_UNSIGNED_INT, nullptr);
+
+    	
         for (Layer* layer:m_layer_stack)
         {
             layer->OnUpdate();

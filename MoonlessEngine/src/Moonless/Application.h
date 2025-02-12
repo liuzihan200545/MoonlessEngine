@@ -9,6 +9,7 @@
 #include "imgui/ImguiLayer.h"
 #include "Renderer/Shader.h"
 #include "Renderer/Buffer.h"
+#include "Renderer/VertexArray.h"
 
 namespace Moonless
 {
@@ -29,26 +30,6 @@ namespace Moonless
         Window& GetWindow() { return *m_window; }
 
         static Application& get() { return *m_handle; }
-
-        static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type) {
-            switch (type)
-            {
-            case ShaderDataType::Float:    return GL_FLOAT;
-            case ShaderDataType::Float2:   return GL_FLOAT;
-            case ShaderDataType::Float3:   return GL_FLOAT;
-            case ShaderDataType::Float4:   return GL_FLOAT;
-            case ShaderDataType::Mat3:     return GL_FLOAT;
-            case ShaderDataType::Mat4:     return GL_FLOAT;
-            case ShaderDataType::Int:      return GL_INT;
-            case ShaderDataType::Int2:     return GL_INT;
-            case ShaderDataType::Int3:     return GL_INT;
-            case ShaderDataType::Int4:     return GL_INT;
-            case ShaderDataType::Bool:     return GL_BOOL;
-            }
-		
-            ML_CORE_ASSERT(false, "Unknown ShaderDataType!")
-            return 0;
-        }
         
     private:
         std::unique_ptr<Window> m_window;
@@ -61,11 +42,11 @@ namespace Moonless
 
         static Application* m_handle;
     private:
-        unsigned int m_VertexArray;
-        std::unique_ptr<Shader> m_shader;
+        std::shared_ptr<Shader> m_Shader;
+        std::shared_ptr<VertexArray> m_VertexArray;
 
-        std::unique_ptr<VertexBuffer> m_VertexBuffer;
-        std::unique_ptr<IndexBuffer> m_IndexBuffer;
+        std::shared_ptr<Shader> m_BlueShader;
+        std::shared_ptr<VertexArray> m_SquareVA;
     };
 
     Application* CreateApplication();
