@@ -13,7 +13,7 @@ public:
 	Layer("Example") ,
 	m_camera(-1.08f,1.08f,-0.72f,0.72f),
 	m_cam_pos({0.0f,0.0f,0.0f}),
-	time(glfwGetTime())
+	time(static_cast<float>(glfwGetTime()))
 	{
         m_VertexArray.reset(VertexArray::Create());
     
