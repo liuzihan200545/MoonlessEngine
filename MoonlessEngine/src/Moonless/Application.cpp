@@ -5,6 +5,8 @@
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 #include "Input.h"
+#include "KeyCodes.h"
+#include "Events/KeyEvent.h"
 
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
@@ -26,12 +28,17 @@ Moonless::Application::Application(){
 }
 
 Moonless::Application::~Application() {
-    
+    ML_CORE_INFO("Moonless Engine exit.");
 }
 
 void Moonless::Application::run() {
     while (m_running)
     {
+        if(Input::IsKeyPressed(ML_KEY_ESCAPE))
+        {
+            this->m_running = false;
+        }
+        
         for (Layer* layer:m_layer_stack)
         {
             layer->OnUpdate();

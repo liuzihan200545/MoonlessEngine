@@ -72,10 +72,10 @@ public:
 	    m_SquareVA.reset(VertexArray::Create());
 
 	    float squareVertices[3 * 4] = {
-	        -0.1f, -0.1f, 0.0f,
-	         0.1f, -0.1f, 0.0f,
-	         0.1f,  0.1f, 0.0f,
-	        -0.1f,  0.1f, 0.0f
+	        -0.5f, -0.5f, 0.0f,
+	         0.5f, -0.5f, 0.0f,
+	         0.5f,  0.5f, 0.0f,
+	        -0.5f,  0.5f, 0.0f
 	    };
 
 	    std::shared_ptr<VertexBuffer> square_vb;
@@ -176,6 +176,8 @@ public:
     	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->Bind();
     	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
+    	Renderer::Submit(m_Shader,m_VertexArray);
+    	
     	for (int y = 0; y < 20; y++)
     	{
     		for (int x = 0; x < 20; x++)
