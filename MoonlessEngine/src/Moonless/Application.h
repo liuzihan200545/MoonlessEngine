@@ -1,16 +1,11 @@
 #pragma once
 
 #include "imgui/imgui.h"
-#include "glad/glad.h"
 #include "Core.h"
 #include "LayerStack.h"
 #include "Log.h"
 #include "Window.h"
 #include "imgui/ImguiLayer.h"
-#include "Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-#include "Renderer/OrthographicCamera.h"    
 
 namespace Moonless
 {
@@ -43,13 +38,7 @@ namespace Moonless
 
         static Application* m_handle;
     private:
-        std::shared_ptr<Shader> m_Shader;
-        std::shared_ptr<VertexArray> m_VertexArray;
-
-        std::shared_ptr<Shader> m_BlueShader;
-        std::shared_ptr<VertexArray> m_SquareVA;
-
-        OrthographicCamera m_camera;
+        
     };
 
     Application* CreateApplication();

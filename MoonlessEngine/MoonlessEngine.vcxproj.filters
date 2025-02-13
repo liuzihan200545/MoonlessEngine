@@ -70,10 +70,22 @@
     <ClInclude Include="src\Moonless\Renderer\GraphicsContext.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\OrthographicCamera.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\RenderCommand.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\Renderer.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\RendererAPI.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\Shader.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\VertexArray.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Moonless\Window.h">
@@ -92,6 +104,12 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -121,10 +139,22 @@
     <ClCompile Include="src\Moonless\Renderer\Buffer.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\OrthographicCamera.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\RenderCommand.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\Renderer.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\RendererAPI.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\Shader.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\VertexArray.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Moonless\imgui\ImguiLayer.cpp">
@@ -140,6 +170,12 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">

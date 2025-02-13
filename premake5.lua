@@ -101,7 +101,8 @@ project "SandBox"
     includedirs {
         "%{wks.location}/include",
         "MoonlessEngine/src",
-        "include/glad/include"
+        "include/glad/include",
+        "MoonlessEngine/src/Moonless",
     }
 
     filter "system:windows"

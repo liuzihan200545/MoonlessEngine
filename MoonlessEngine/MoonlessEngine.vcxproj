@@ -160,15 +160,17 @@
     <ClInclude Include="src\Moonless\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Moonless\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Moonless\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Moonless\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Moonless\Renderer\Renderer.h" />
+    <ClInclude Include="src\Moonless\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Moonless\Renderer\Shader.h" />
+    <ClInclude Include="src\Moonless\Renderer\VertexArray.h" />
     <ClInclude Include="src\Moonless\Window.h" />
     <ClInclude Include="src\Moonless\imgui\ImguiLayer.h" />
     <ClInclude Include="src\Moonless\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="src\Moonless\imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -186,10 +188,10 @@
     <ClCompile Include="src\Moonless\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Moonless\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Moonless\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Moonless\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\Moonless\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\Moonless\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="src\Moonless\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
@@ -207,10 +209,6 @@
     <ProjectReference Include="..\include\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\Moonless\Renderer\VertexArray.h" />
-    <Content Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
