@@ -1,11 +1,13 @@
 #include <Moonless.h>
 #include <GLFW/glfw3.h>
 
+#include "Events/KeyEvent.h"
+
 using namespace Moonless;
 
 class ExampleLayer : public Layer {
 public:
-    ExampleLayer() : Layer("Example") ,  m_camera(-1.08f,1.08f,-0.72f,0.72f)
+    ExampleLayer() : Layer("Example") ,  m_camera(-1.08f,1.08f,-0.72f,0.72f), m_cam_pos({0.0f,0.0f,0.0f})
 	{
         m_VertexArray.reset(VertexArray::Create());
     
@@ -120,10 +122,31 @@ public:
     }
 
     void OnUpdate() override {
+    	if(Input::IsKeyPressed(ML_KEY_A))
+    	{
+    		m_cam_pos.x -= m_cam_speed;
+    		ML_CLIENT_ERROR("key left pressed!");
+    	}
+    	if(Input::IsKeyPressed(ML_KEY_D))
+    	{
+    		m_cam_pos.x += m_cam_speed;
+    		ML_CLIENT_ERROR("key left pressed!");
+    	}
+    	if(Input::IsKeyPressed(ML_KEY_W))
+    	{
+    		m_cam_pos.y += m_cam_speed;
+    		ML_CLIENT_ERROR("key left pressed!");
+    	}
+    	if(Input::IsKeyPressed(ML_KEY_S))
+    	{
+    		m_cam_pos.y -= m_cam_speed;
+    		ML_CLIENT_ERROR("key left pressed!");
+    	}
+    	
         RenderCommand::SetClearColor({0.1f,0.1f,0.1f,1.0f});
         RenderCommand::Clear();
 
-        m_camera.SetPosition({0.0f,0.0f,0.0f});
+        m_camera.SetPosition(m_cam_pos);
         m_camera.SetRotation(0.0f);
     	
         Renderer::BeginScene(m_camera);
@@ -134,13 +157,17 @@ public:
         Renderer::EndScene();
     }
 
-    void OnEvent(Moonless::Event& event) override {
-        
+    void OnEvent(Event& event) override {
+		
     }
 
     void OnImGuiRender() override {
-        /*ImGui::Begin("hello");
-        ImGui::End();*/
+        ImGui::Begin("hello");
+    	ImVec2 button_size(100, 50);
+    	if (ImGui::Button("Click Me", button_size)) {
+    		m_cam_pos = glm::vec3(0.0f,0.0f,0.0f);
+    	}
+        ImGui::End();
     }
 
     std::shared_ptr<Shader> m_Shader;
@@ -150,6 +177,9 @@ public:
     std::shared_ptr<VertexArray> m_SquareVA;
 
     OrthographicCamera m_camera;
+
+	glm::vec3 m_cam_pos;
+	float m_cam_speed = 0.1f;
 };
 
 class Sandbox : public Moonless::Application {

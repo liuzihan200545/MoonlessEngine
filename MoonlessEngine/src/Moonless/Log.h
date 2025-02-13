@@ -38,15 +38,30 @@ namespace Moonless
     };
 }
 
-#define ML_CORE_TRACE(...)     Moonless::Log::get_core_logger()->trace(__VA_ARGS__)
-#define ML_CORE_INFO(...)      Moonless::Log::get_core_logger()->info(__VA_ARGS__)
-#define ML_CORE_WARN(...)      Moonless::Log::get_core_logger()->warn(__VA_ARGS__)
-#define ML_CORE_ERROR(...)     Moonless::Log::get_core_logger()->error(__VA_ARGS__)
-#define ML_CORE_FATAL(...)     Moonless::Log::get_core_logger()->fatal(__VA_ARGS__)
+#ifdef ML_DEBUG
+    #define ML_CORE_TRACE(...)     Moonless::Log::get_core_logger()->trace(__VA_ARGS__)
+    #define ML_CORE_INFO(...)      Moonless::Log::get_core_logger()->info(__VA_ARGS__)
+    #define ML_CORE_WARN(...)      Moonless::Log::get_core_logger()->warn(__VA_ARGS__)
+    #define ML_CORE_ERROR(...)     Moonless::Log::get_core_logger()->error(__VA_ARGS__)
+    #define ML_CORE_FATAL(...)     Moonless::Log::get_core_logger()->fatal(__VA_ARGS__)
 
-#define ML_CLIENT_TRACE(...)     Moonless::Log::get_client_logger()->trace(__VA_ARGS__)
-#define ML_CLIENT_INFO(...)      Moonless::Log::get_client_logger()->info(__VA_ARGS__)
-#define ML_CLIENT_WARN(...)      Moonless::Log::get_client_logger()->warn(__VA_ARGS__)
-#define ML_CLIENT_ERROR(...)     Moonless::Log::get_client_logger()->error(__VA_ARGS__)
-#define ML_CLIENT_FATAL(...)     Moonless::Log::get_client_logger()->fatal(__VA_ARGS__)
+    #define ML_CLIENT_TRACE(...)     Moonless::Log::get_client_logger()->trace(__VA_ARGS__)
+    #define ML_CLIENT_INFO(...)      Moonless::Log::get_client_logger()->info(__VA_ARGS__)
+    #define ML_CLIENT_WARN(...)      Moonless::Log::get_client_logger()->warn(__VA_ARGS__)
+    #define ML_CLIENT_ERROR(...)     Moonless::Log::get_client_logger()->error(__VA_ARGS__)
+    #define ML_CLIENT_FATAL(...)     Moonless::Log::get_client_logger()->fatal(__VA_ARGS__)
+#else
+    #define ML_CORE_TRACE(...)     
+    #define ML_CORE_INFO(...)      
+    #define ML_CORE_WARN(...)      
+    #define ML_CORE_ERROR(...)     
+    #define ML_CORE_FATAL(...)     
+
+    #define ML_CLIENT_TRACE(...)     
+    #define ML_CLIENT_INFO(...)      
+    #define ML_CLIENT_WARN(...)      
+    #define ML_CLIENT_ERROR(...)     
+    #define ML_CLIENT_FATAL(...)     
+#endif
+    
 
