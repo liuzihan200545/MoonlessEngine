@@ -2,6 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <Platform/OpenGL/OpenGLShader.h>
+#include <Renderer/Texture.h>
+#include <Platform/OpenGL/OpenGLTexture2D.h>
 
 using namespace Moonless;
 
@@ -71,18 +73,19 @@ public:
 	    // object2:
 	    m_SquareVA.reset(VertexArray::Create());
 
-	    float squareVertices[3 * 4] = {
-	        -0.5f, -0.5f, 0.0f,
-	         0.5f, -0.5f, 0.0f,
-	         0.5f,  0.5f, 0.0f,
-	        -0.5f,  0.5f, 0.0f
+	    float squareVertices[5 * 4] = {
+	    	-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 	    };
 
 	    std::shared_ptr<VertexBuffer> square_vb;
 	    square_vb.reset(VertexBuffer::Create(squareVertices,sizeof(squareVertices)));
 
 	    square_vb->SetLayout({
-	            { ShaderDataType::Float3, "a_Position" }
+	            { ShaderDataType::Float3, "a_Position" },
+	    		{ ShaderDataType::Float2, "a_uv"}
 	    });
 	    
 	    uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -93,35 +96,33 @@ public:
 	    m_SquareVA->AddVertexBuffer(square_vb);
 	    m_SquareVA->SetIndexBuffer(square_ib);
 
+    	
+
 	    std::string blueShaderVertexSrc = R"(
 				#version 330 core
-				
+			
 				layout(location = 0) in vec3 a_Position;
-
-				out vec3 v_Position;
-
+				layout(location = 1) in vec2 a_TexCoord;
 				uniform mat4 u_ViewProjection;
 				uniform mat4 u_Transform;
-
+				out vec2 v_TexCoord;
 				void main()
 				{
-					v_Position = a_Position;
+					v_TexCoord = a_TexCoord;
 					gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 				}
 			)";
 
 	    std::string blueShaderFragmentSrc = R"(
 				#version 330 core
-				
+			
 				layout(location = 0) out vec4 color;
-
-				uniform vec3 u_Color;
-
-				in vec3 v_Position;
-
+				in vec2 v_TexCoord;
+				
+				uniform sampler2D u_Texture;
 				void main()
 				{
-					color = vec4(u_Color, 1.0);
+					color = texture(u_Texture, v_TexCoord);
 				}
 			)";
 		
@@ -173,15 +174,18 @@ public:
     	
         Renderer::BeginScene(m_camera);
 
-    	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->Bind();
-    	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->UploadUniformFloat3("u_Color", m_SquareColor);
-
     	Renderer::Submit(m_Shader,m_VertexArray);
+
+    	m_texture = OpenGLTexture2D::Create("assets/textures/Checkerboard.png");
+		//m_texture->Bind(0);
+    	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->Bind();
+    	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->UploadUniformInt("u_Texture",0);
     	
     	for (int y = 0; y < 20; y++)
     	{
     		for (int x = 0; x < 20; x++)
     		{
+    			m_texture->Bind();
     			glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
     			glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
     			Renderer::Submit(m_BlueShader, m_SquareVA, transform);
@@ -210,6 +214,8 @@ public:
 
     std::shared_ptr<Shader> m_BlueShader;
     std::shared_ptr<VertexArray> m_SquareVA;
+
+	std::shared_ptr<Texture2D> m_texture;
 
 	glm::vec3 m_SquareColor = { 0.5f, 0.5f, 0.8f };
 
