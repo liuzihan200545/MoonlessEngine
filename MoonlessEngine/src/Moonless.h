@@ -21,5 +21,7 @@
 #include "Moonless/Events/MouseEvent.h"
 #include "Moonless/Events/ApplicationEvent.h"
 
+#include "Moonless/Core/TimeStep.h"
+
 // Entry Point
 #include "Moonless/EntryPoint.h"

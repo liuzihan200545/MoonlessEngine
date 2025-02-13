@@ -1,13 +1,15 @@
 #include <Moonless.h>
 #include <GLFW/glfw3.h>
 
-#include "Events/KeyEvent.h"
-
 using namespace Moonless;
 
 class ExampleLayer : public Layer {
 public:
-    ExampleLayer() : Layer("Example") ,  m_camera(-1.08f,1.08f,-0.72f,0.72f), m_cam_pos({0.0f,0.0f,0.0f})
+    ExampleLayer() :
+	Layer("Example") ,
+	m_camera(-1.08f,1.08f,-0.72f,0.72f),
+	m_cam_pos({0.0f,0.0f,0.0f}),
+	time(glfwGetTime())
 	{
         m_VertexArray.reset(VertexArray::Create());
     
@@ -122,31 +124,37 @@ public:
     }
 
     void OnUpdate() override {
+		Timestep delta_time = static_cast<float>(glfwGetTime()) - time;
+
+    	time = static_cast<float>(glfwGetTime());
+
+    	ML_CLIENT_INFO("{} ms",delta_time.GetMilliseconds());
+    	
     	if(Input::IsKeyPressed(ML_KEY_A))
     	{
-    		m_cam_pos.x -= m_cam_speed;
+    		m_cam_pos.x -= m_cam_speed * delta_time;
     	}
     	else if(Input::IsKeyPressed(ML_KEY_D))
     	{
-    		m_cam_pos.x += m_cam_speed;
+    		m_cam_pos.x += m_cam_speed * delta_time;
     	}
     	if(Input::IsKeyPressed(ML_KEY_W))
     	{
-    		m_cam_pos.y += m_cam_speed;
+    		m_cam_pos.y += m_cam_speed * delta_time;
     	}
     	else if(Input::IsKeyPressed(ML_KEY_S))
     	{
-    		m_cam_pos.y -= m_cam_speed;
+    		m_cam_pos.y -= m_cam_speed * delta_time;
     	}
 
     	if(Input::IsKeyPressed(ML_KEY_LEFT))
     	{
-    		m_cam_rot += m_cam_rot_speed;
+    		m_cam_rot += m_cam_rot_speed * delta_time;
     		ML_CLIENT_INFO("key left clicked!");
     	}
     	else if (Input::IsKeyPressed(ML_KEY_RIGHT))
     	{
-    		m_cam_rot -= m_cam_rot_speed;
+    		m_cam_rot -= m_cam_rot_speed * delta_time;
     		ML_CLIENT_INFO("key right clicked!");
     	}
     	
@@ -187,8 +195,10 @@ public:
 
 	glm::vec3 m_cam_pos;
 	float m_cam_rot = 0;
-	float m_cam_speed = 0.1f;
+	float m_cam_speed = 1.0f;
 	float m_cam_rot_speed = 0.1f;
+
+	Timestep time;
 };
 
 class Sandbox : public Moonless::Application {

@@ -145,6 +145,7 @@
     <ClInclude Include="src\Moonless.h" />
     <ClInclude Include="src\Moonless\Application.h" />
     <ClInclude Include="src\Moonless\Core.h" />
+    <ClInclude Include="src\Moonless\Core\TimeStep.h" />
     <ClInclude Include="src\Moonless\EntryPoint.h" />
     <ClInclude Include="src\Moonless\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Moonless\Events\Event.h" />

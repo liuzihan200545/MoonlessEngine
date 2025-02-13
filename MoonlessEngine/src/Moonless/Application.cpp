@@ -19,6 +19,8 @@ Moonless::Application::Application(){
         this->OnEvent(e);
     });
 
+    m_window->SetVSync(true);
+
     m_imgui_layer = new ImguiLayer();
     PushOverlay(m_imgui_layer);
 }
