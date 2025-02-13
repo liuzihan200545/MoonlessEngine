@@ -125,29 +125,36 @@ public:
     	if(Input::IsKeyPressed(ML_KEY_A))
     	{
     		m_cam_pos.x -= m_cam_speed;
-    		ML_CLIENT_ERROR("key left pressed!");
     	}
-    	if(Input::IsKeyPressed(ML_KEY_D))
+    	else if(Input::IsKeyPressed(ML_KEY_D))
     	{
     		m_cam_pos.x += m_cam_speed;
-    		ML_CLIENT_ERROR("key left pressed!");
     	}
     	if(Input::IsKeyPressed(ML_KEY_W))
     	{
     		m_cam_pos.y += m_cam_speed;
-    		ML_CLIENT_ERROR("key left pressed!");
     	}
-    	if(Input::IsKeyPressed(ML_KEY_S))
+    	else if(Input::IsKeyPressed(ML_KEY_S))
     	{
     		m_cam_pos.y -= m_cam_speed;
-    		ML_CLIENT_ERROR("key left pressed!");
+    	}
+
+    	if(Input::IsKeyPressed(ML_KEY_LEFT))
+    	{
+    		m_cam_rot += m_cam_rot_speed;
+    		ML_CLIENT_INFO("key left clicked!");
+    	}
+    	else if (Input::IsKeyPressed(ML_KEY_RIGHT))
+    	{
+    		m_cam_rot -= m_cam_rot_speed;
+    		ML_CLIENT_INFO("key right clicked!");
     	}
     	
         RenderCommand::SetClearColor({0.1f,0.1f,0.1f,1.0f});
         RenderCommand::Clear();
 
         m_camera.SetPosition(m_cam_pos);
-        m_camera.SetRotation(0.0f);
+        m_camera.SetRotation(m_cam_rot);
     	
         Renderer::BeginScene(m_camera);
     	
@@ -179,7 +186,9 @@ public:
     OrthographicCamera m_camera;
 
 	glm::vec3 m_cam_pos;
+	float m_cam_rot = 0;
 	float m_cam_speed = 0.1f;
+	float m_cam_rot_speed = 0.1f;
 };
 
 class Sandbox : public Moonless::Application {
