@@ -17,10 +17,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDirs = {}
 IncludeDirs["Glad"] = "include/glad/include"
 IncludeDirs["Imgui"] = "include/imgui"
+IncludeDirs["stb_image"] = "include/stb_image/include"
 
 group "dependencies"
     include "include/glad"
     include "include/imgui"
+    include "include/stb_image"
 group ""
 
 project "MoonlessEngine"
@@ -47,13 +49,14 @@ project "MoonlessEngine"
         "MoonlessEngine/src/",
         "%{IncludeDirs.Glad}",
         "%{IncludeDirs.Imgui}",
+	    "%{IncludeDirs.stb_image}"
     }
 
     libdirs {
         "%{wks.location}/lib"
     }
 
-    links { "glfw3_mt.lib", "Glad", "Imgui" }
+    links { "glfw3_mt.lib", "Glad", "Imgui", "stb_image" }
 
     filter "system:windows"
         systemversion "latest"

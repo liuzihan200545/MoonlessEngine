@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;..\include\stb_image\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -100,7 +100,7 @@
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;..\include\stb_image\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -123,7 +123,7 @@
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;..\include\stb_image\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -164,6 +164,7 @@
     <ClInclude Include="src\Moonless\Renderer\Renderer.h" />
     <ClInclude Include="src\Moonless\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Moonless\Renderer\Shader.h" />
+    <ClInclude Include="src\Moonless\Renderer\Texture.h" />
     <ClInclude Include="src\Moonless\Renderer\VertexArray.h" />
     <ClInclude Include="src\Moonless\Window.h" />
     <ClInclude Include="src\Moonless\imgui\ImguiLayer.h" />
@@ -173,6 +174,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -190,6 +192,7 @@
     <ClCompile Include="src\Moonless\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Moonless\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Moonless\Renderer\Texture.cpp" />
     <ClCompile Include="src\Moonless\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Moonless\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\Moonless\imgui\imgui_impl_glfw.cpp" />
@@ -198,6 +201,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
@@ -211,6 +215,9 @@
     </ProjectReference>
     <ProjectReference Include="..\include\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\include\stb_image\stb_image.vcxproj">
+      <Project>{3096E6B0-9C00-9B27-E53E-4CCD51E8787C}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,6 +4,9 @@
     <Filter Include="Moonless">
       <UniqueIdentifier>{75C4F0F6-6191-4B02-8AAA-39AA76D68090}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Moonless\Core">
+      <UniqueIdentifier>{EDF96F14-59BA-EB4A-22F5-34C88E743027}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Moonless\Events">
       <UniqueIdentifier>{B93A78F5-25C6-E5B9-2ED7-68AE9AE141BA}</UniqueIdentifier>
     </Filter>
@@ -30,6 +33,9 @@
     </ClInclude>
     <ClInclude Include="src\Moonless\Core.h">
       <Filter>Moonless</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\TimeStep.h">
+      <Filter>Moonless\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Moonless\EntryPoint.h">
       <Filter>Moonless</Filter>
@@ -85,6 +91,9 @@
     <ClInclude Include="src\Moonless\Renderer\Shader.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\Texture.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\VertexArray.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
@@ -107,6 +116,12 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -154,6 +169,9 @@
     <ClCompile Include="src\Moonless\Renderer\Shader.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\Texture.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\VertexArray.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
@@ -173,6 +191,12 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
