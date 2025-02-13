@@ -10,6 +10,7 @@
 #include "Renderer/Shader.h"
 #include "Renderer/Buffer.h"
 #include "Renderer/VertexArray.h"
+#include "Renderer/OrthographicCamera.h"    
 
 namespace Moonless
 {
@@ -47,6 +48,8 @@ namespace Moonless
 
         std::shared_ptr<Shader> m_BlueShader;
         std::shared_ptr<VertexArray> m_SquareVA;
+
+        OrthographicCamera m_camera;
     };
 
     Application* CreateApplication();

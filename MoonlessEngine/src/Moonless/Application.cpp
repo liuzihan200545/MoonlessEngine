@@ -13,7 +13,7 @@
 
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
-Moonless::Application::Application() {
+Moonless::Application::Application() : m_camera(-1.08f,1.08f,-0.72f,0.72f){
     ML_CORE_ASSERT(!m_handle,"Application already exists.")
     
     m_handle = this;
@@ -59,11 +59,13 @@ Moonless::Application::Application() {
 			layout(location = 1) in vec4 a_Color;
 			out vec3 v_Position;
             out vec4 v_Color;
+			uniform mat4 u_ViewProjection;
+
 			void main()
 			{
 				v_Position = a_Position;
                 v_Color = a_Color;
-				gl_Position = vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
 			}
 		)";
     std::string fragmentSrc = R"(
@@ -112,10 +114,12 @@ Moonless::Application::Application() {
 
 			out vec3 v_Position;
 
+			uniform mat4 u_ViewProjection;
+
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -145,13 +149,13 @@ void Moonless::Application::run() {
         RenderCommand::SetClearColor({0.1f,0.1f,0.1f,1.0f});
     	RenderCommand::Clear();
 
-    	Renderer::BeginScene();
-
-    	m_Shader->Bind();
-    	Renderer::Submit(m_VertexArray);
+		m_camera.SetPosition({0.0f,0.0f,0.0f});
+    	m_camera.SetRotation(0.0f);
     	
-		m_BlueShader->Bind();
-		Renderer::Submit(m_SquareVA);
+    	Renderer::BeginScene(m_camera);
+    	
+    	Renderer::Submit(m_Shader,m_VertexArray);
+		Renderer::Submit(m_BlueShader,m_SquareVA);
     	
     	Renderer::EndScene();
     	
