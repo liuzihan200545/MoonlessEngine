@@ -24,22 +24,20 @@ void Moonless::OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBu
     this->Bind();
     vertexBuffer->Bind();
     
-    uint32_t index = 0;
     const auto& layout = vertexBuffer->GetLayout();
     for (const auto& element : layout)
     {
-        glEnableVertexAttribArray(index + m_VertexBufferIndexOffset);
-        glVertexAttribPointer(index + m_VertexBufferIndexOffset,
+        glEnableVertexAttribArray(m_VertexBufferIndex);
+        glVertexAttribPointer(m_VertexBufferIndex,
             element.GetComponentCount(),
             ShaderDataTypeToOpenGLBaseType(element.type),
             element.normalized ? GL_TRUE : GL_FALSE,
             layout.getStride(),
             reinterpret_cast<const void*>(element.offset));
-        index++;
+        m_VertexBufferIndex++;
     }
     
     m_vertex_buffers.push_back(vertexBuffer);
-    m_VertexBufferIndexOffset += layout.get_elements().size();
 }
 
 void Moonless::OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) {

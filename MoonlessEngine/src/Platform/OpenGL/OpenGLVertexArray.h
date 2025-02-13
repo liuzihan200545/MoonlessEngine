@@ -46,6 +46,6 @@ namespace Moonless
         std::vector<std::shared_ptr<VertexBuffer>> m_vertex_buffers;
         std::shared_ptr<IndexBuffer> m_index_buffers;
         uint32_t m_RendererID;
-        uint32_t m_VertexBufferIndexOffset = 0;
+        uint32_t m_VertexBufferIndex = 0;
     };
 }

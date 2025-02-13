@@ -1,9 +1,11 @@
 #include <Moonless.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <Platform/OpenGL/OpenGLShader.h>
 #include <Renderer/Texture.h>
 #include <Platform/OpenGL/OpenGLTexture2D.h>
+
 
 using namespace Moonless;
 
@@ -96,9 +98,39 @@ public:
 	    m_SquareVA->AddVertexBuffer(square_vb);
 	    m_SquareVA->SetIndexBuffer(square_ib);
 
-    	
+	    std::string flatShaderVertexSrc = R"(
+				#version 330 core
+			
+				layout(location = 0) in vec3 a_Position;
 
-	    std::string blueShaderVertexSrc = R"(
+				uniform mat4 u_ViewProjection;
+				uniform mat4 u_Transform;
+
+				out vec3 v_Position;
+
+				void main()
+				{
+					v_Position = a_Position;
+					gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+				}
+			)";
+
+	    std::string flatShaderFragSrc = R"(
+				#version 330 core
+			
+				layout(location = 0) out vec4 color;
+
+				in vec3 v_Position;
+				
+				uniform vec3 u_Color;
+
+				void main()
+				{
+					color = vec4(u_Color, 1.0);
+				}
+			)";
+
+    	std::string textureShaderVertexSrc = R"(
 				#version 330 core
 			
 				layout(location = 0) in vec3 a_Position;
@@ -113,7 +145,7 @@ public:
 				}
 			)";
 
-	    std::string blueShaderFragmentSrc = R"(
+    	std::string textureShaderFragSrc = R"(
 				#version 330 core
 			
 				layout(location = 0) out vec4 color;
@@ -126,10 +158,19 @@ public:
 				}
 			)";
 		
-		m_BlueShader.reset(Shader::Create(blueShaderVertexSrc,blueShaderFragmentSrc));
-    }
+		m_BlueShader.reset(Shader::Create(flatShaderVertexSrc,flatShaderFragSrc));
+    	m_textureShader.reset(Shader::Create(textureShaderVertexSrc,textureShaderFragSrc));
+
+		dynamic_pointer_cast<OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture",0);
+
+    	m_texture = OpenGLTexture2D::Create("assets/textures/Checkerboard.png");
+    	m_ChernoLogoTexture = OpenGLTexture2D::Create("assets/textures/ChernoLogo.png");
+	}
 
     void OnUpdate() override {
+    	glEnable(GL_BLEND);
+    	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    	
 		Timestep delta_time = static_cast<float>(glfwGetTime()) - time;
 
     	time = static_cast<float>(glfwGetTime());
@@ -175,22 +216,26 @@ public:
         Renderer::BeginScene(m_camera);
 
     	Renderer::Submit(m_Shader,m_VertexArray);
-
-    	m_texture = OpenGLTexture2D::Create("assets/textures/Checkerboard.png");
-		//m_texture->Bind(0);
+		
     	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->Bind();
-    	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->UploadUniformInt("u_Texture",0);
+    	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->UploadUniformFloat3("u_Color",m_SquareColor);
     	
     	for (int y = 0; y < 20; y++)
     	{
     		for (int x = 0; x < 20; x++)
     		{
-    			m_texture->Bind();
     			glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
     			glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
     			Renderer::Submit(m_BlueShader, m_SquareVA, transform);
     		}
     	}
+
+    	m_texture->Bind();
+    	Renderer::Submit(m_textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+    	m_ChernoLogoTexture->Bind();
+    	Renderer::Submit(m_textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+    	// todo: fix rgba image load in.
     	
         Renderer::EndScene();
     }
@@ -214,8 +259,10 @@ public:
 
     std::shared_ptr<Shader> m_BlueShader;
     std::shared_ptr<VertexArray> m_SquareVA;
+	std::shared_ptr<Shader> m_textureShader;
 
 	std::shared_ptr<Texture2D> m_texture;
+	std::shared_ptr<Texture2D> m_ChernoLogoTexture;
 
 	glm::vec3 m_SquareColor = { 0.5f, 0.5f, 0.8f };
 
