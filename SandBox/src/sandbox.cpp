@@ -123,7 +123,7 @@ public:
 					color = vec4(u_Color, 1.0);
 				}
 			)";
-		m_BlueShader = Shader::Create("flat Color Shader",flatShaderVertexSrc,flatShaderFragSrc);
+		m_BlueShader = std::make_shared<OpenGLShader>("assets/shaders/flatColor.glsl");
     	auto m_textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		dynamic_pointer_cast<OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture",0);
