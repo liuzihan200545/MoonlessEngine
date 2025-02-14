@@ -13,7 +13,7 @@ using namespace Moonless;
 class ExampleLayer : public Layer {
 public:
     ExampleLayer() :
-	Layer("Example") , m_CameraController(1080.0f/720.0f,false),
+	Layer("Example") , m_CameraController(1080.0f/720.0f,true),
 	time(static_cast<float>(glfwGetTime()))
 	{
 	    float vertices[3 * 7] = {

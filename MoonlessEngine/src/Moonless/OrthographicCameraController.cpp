@@ -29,13 +29,26 @@ void OrthographicCameraController::OnEvent(Event& e) {
 
 void OrthographicCameraController::OnUpdate(Timestep ts) {
     if (Input::IsKeyPressed(ML_KEY_A))
-        m_CameraPosition.x -= m_CameraTranslationSpeed * ts;
+    {
+        m_CameraPosition.x -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+        m_CameraPosition.y -= sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+    }
     else if (Input::IsKeyPressed(ML_KEY_D))
-        m_CameraPosition.x += m_CameraTranslationSpeed * ts;
+    {
+        m_CameraPosition.x += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+        m_CameraPosition.y += sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+    }
+
     if (Input::IsKeyPressed(ML_KEY_W))
-        m_CameraPosition.y += m_CameraTranslationSpeed * ts;
+    {
+        m_CameraPosition.x += -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+        m_CameraPosition.y += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+    }
     else if (Input::IsKeyPressed(ML_KEY_S))
-        m_CameraPosition.y -= m_CameraTranslationSpeed * ts;
+    {
+        m_CameraPosition.x -= -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+        m_CameraPosition.y -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+    }
 
     if (m_Rotation)
     {
