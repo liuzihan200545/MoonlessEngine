@@ -8,6 +8,8 @@
 #include "KeyCodes.h"
 #include "Renderer/Renderer.h"
 
+#include <glad/glad.h>
+
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
 Moonless::Application::Application(){

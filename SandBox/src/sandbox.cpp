@@ -168,7 +168,7 @@ public:
     }
 
     void OnEvent(Event& event) override {
-		
+		m_CameraController.OnEvent(event);
     }
 
     void OnImGuiRender() override {

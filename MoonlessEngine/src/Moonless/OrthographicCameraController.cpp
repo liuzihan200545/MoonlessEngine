@@ -1,8 +1,11 @@
 #include "mlpch.h"
 #include "OrthographicCameraController.h"
 
+#include "Log.h"
 #include "Moonless/Input.h"
 #include "Moonless/KeyCodes.h"
+
+#include "Moonless/Log.h"
 
 namespace Moonless
 {
