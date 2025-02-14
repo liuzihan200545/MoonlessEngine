@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Moonless/Renderer/Shader.h>
+#include <glm/glm.hpp>
 
 namespace Moonless
 {
@@ -10,9 +11,11 @@ namespace Moonless
         using GLenum = unsigned int;
 
         OpenGLShader(const std::string& filepath);
-        OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
+        OpenGLShader(const std::string& name,const std::string& vertexSrc, const std::string& fragmentSrc);
 
         ~OpenGLShader()override;
+
+        const std::string& GetName() const override { return m_Name; }
 
         void Bind() const override;
 
@@ -33,6 +36,7 @@ namespace Moonless
         
     private:
         uint32_t m_RendererID;
+        std::string m_Name;
     };
 
 }

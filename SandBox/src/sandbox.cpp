@@ -17,8 +17,6 @@ public:
 	m_cam_pos({0.0f,0.0f,0.0f}),
 	time(static_cast<float>(glfwGetTime()))
 	{
-        m_VertexArray.reset(VertexArray::Create());
-    
 	    float vertices[3 * 7] = {
 	        -0.5f, -0.5f, 0.0f, 0.5f,0.5f,0.8f,1.0f,
 	         0.5f, -0.5f, 0.0f, 0.5f,0.5f,0.8f,1.0f,
@@ -38,9 +36,6 @@ public:
 
 	    std::shared_ptr<IndexBuffer> indexBuffer;
 	    indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-
-	    m_VertexArray->AddVertexBuffer(vertexBuffer);
-	    m_VertexArray->SetIndexBuffer(indexBuffer);
 	    
 	    std::string vertexSrc = R"(
 				#version 330 core
@@ -70,7 +65,6 @@ public:
 					color = v_Color;
 				}
 			)";
-	    m_Shader.reset(Shader::Create(vertexSrc,fragmentSrc));
 
 	    // object2:
 	    m_SquareVA.reset(VertexArray::Create());
@@ -129,8 +123,8 @@ public:
 					color = vec4(u_Color, 1.0);
 				}
 			)";
-		m_BlueShader.reset(Shader::Create(flatShaderVertexSrc,flatShaderFragSrc));
-    	m_textureShader.reset(Shader::Create("assets/shaders/Texture.glsl"));
+		m_BlueShader = Shader::Create("flat Color Shader",flatShaderVertexSrc,flatShaderFragSrc);
+    	auto m_textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		dynamic_pointer_cast<OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture",0);
 
@@ -182,8 +176,6 @@ public:
         m_camera.SetRotation(m_cam_rot);
     	
         Renderer::BeginScene(m_camera);
-
-    	Renderer::Submit(m_Shader,m_VertexArray);
 		
     	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->Bind();
     	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->UploadUniformFloat3("u_Color",m_SquareColor);
@@ -199,11 +191,9 @@ public:
     	}
 
     	m_texture->Bind();
-    	Renderer::Submit(m_textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+    	Renderer::Submit(m_ShaderLibrary.Get("Texture"), m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
     	m_ChernoLogoTexture->Bind();
-    	Renderer::Submit(m_textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-    	// todo: fix rgba image load in.
+    	Renderer::Submit(m_ShaderLibrary.Get("Texture"), m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
     	
         Renderer::EndScene();
     }
@@ -222,15 +212,13 @@ public:
         ImGui::End();
     }
 
-    std::shared_ptr<Shader> m_Shader;
-    std::shared_ptr<VertexArray> m_VertexArray;
-
     std::shared_ptr<Shader> m_BlueShader;
-    std::shared_ptr<VertexArray> m_SquareVA;
-	std::shared_ptr<Shader> m_textureShader;
+    std::shared_ptr<VertexArray> m_SquareVA;	
 
 	std::shared_ptr<Texture2D> m_texture;
 	std::shared_ptr<Texture2D> m_ChernoLogoTexture;
+
+	ShaderLibrary m_ShaderLibrary;
 
 	glm::vec3 m_SquareColor = { 0.5f, 0.5f, 0.8f };
 
