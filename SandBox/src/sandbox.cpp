@@ -5,6 +5,7 @@
 #include <Platform/OpenGL/OpenGLShader.h>
 #include <Renderer/Texture.h>
 #include <Platform/OpenGL/OpenGLTexture2D.h>
+#include <Moonless/OrthographicCameraController.h>
 
 
 using namespace Moonless;
@@ -12,9 +13,7 @@ using namespace Moonless;
 class ExampleLayer : public Layer {
 public:
     ExampleLayer() :
-	Layer("Example") ,
-	m_camera(-1.08f,1.08f,-0.72f,0.72f),
-	m_cam_pos({0.0f,0.0f,0.0f}),
+	Layer("Example") , m_CameraController(1080.0f/720.0f,false),
 	time(static_cast<float>(glfwGetTime()))
 	{
 	    float vertices[3 * 7] = {
@@ -139,43 +138,13 @@ public:
 
     	ML_CLIENT_INFO("{} ms",delta_time.GetMilliseconds());
     	
-    	if(Input::IsKeyPressed(ML_KEY_A))
-    	{
-    		m_cam_pos.x -= m_cam_speed * delta_time;
-    	}
-    	else if(Input::IsKeyPressed(ML_KEY_D))
-    	{
-    		m_cam_pos.x += m_cam_speed * delta_time;
-    	}
-    	if(Input::IsKeyPressed(ML_KEY_W))
-    	{
-    		m_cam_pos.y += m_cam_speed * delta_time;
-    	}
-    	else if(Input::IsKeyPressed(ML_KEY_S))
-    	{
-    		m_cam_pos.y -= m_cam_speed * delta_time;
-    	}
-
-    	if(Input::IsKeyPressed(ML_KEY_LEFT))
-    	{
-    		m_cam_rot += m_cam_rot_speed * delta_time;
-    		ML_CLIENT_INFO("key left clicked!");
-    	}
-    	else if (Input::IsKeyPressed(ML_KEY_RIGHT))
-    	{
-    		m_cam_rot -= m_cam_rot_speed * delta_time;
-    		ML_CLIENT_INFO("key right clicked!");
-    	}
+    	m_CameraController.OnUpdate(delta_time);
 
     	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
     	
         RenderCommand::SetClearColor({0.1f,0.1f,0.1f,1.0f});
         RenderCommand::Clear();
-
-        m_camera.SetPosition(m_cam_pos);
-        m_camera.SetRotation(m_cam_rot);
-    	
-        Renderer::BeginScene(m_camera);
+        Renderer::BeginScene(m_CameraController.GetCamera());
 		
     	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->Bind();
     	std::dynamic_pointer_cast<OpenGLShader>(m_BlueShader)->UploadUniformFloat3("u_Color",m_SquareColor);
@@ -204,10 +173,6 @@ public:
 
     void OnImGuiRender() override {
         ImGui::Begin("hello");
-    	ImVec2 button_size(100, 50);
-    	if (ImGui::Button("Click Me", button_size)) {
-    		m_cam_pos = glm::vec3(0.0f,0.0f,0.0f);
-    	}
     	ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
         ImGui::End();
     }
@@ -222,12 +187,7 @@ public:
 
 	glm::vec3 m_SquareColor = { 0.5f, 0.5f, 0.8f };
 
-    OrthographicCamera m_camera;
-
-	glm::vec3 m_cam_pos;
-	float m_cam_rot = 0;
-	float m_cam_speed = 1.0f;
-	float m_cam_rot_speed = 0.1f;
+    OrthographicCameraController m_CameraController;
 
 	Timestep time;
 };

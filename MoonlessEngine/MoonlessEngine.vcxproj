@@ -163,6 +163,7 @@
     <ClInclude Include="src\Moonless\LayerStack.h" />
     <ClInclude Include="src\Moonless\Log.h" />
     <ClInclude Include="src\Moonless\MouseButtonCodes.h" />
+    <ClInclude Include="src\Moonless\OrthographicCameraController.h" />
     <ClInclude Include="src\Moonless\Renderer\Buffer.h" />
     <ClInclude Include="src\Moonless\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Moonless\Renderer\OrthographicCamera.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="src\Moonless\Layer.cpp" />
     <ClCompile Include="src\Moonless\LayerStack.cpp" />
     <ClCompile Include="src\Moonless\Log.cpp" />
+    <ClCompile Include="src\Moonless\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Moonless\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Moonless\Renderer\RenderCommand.cpp" />
