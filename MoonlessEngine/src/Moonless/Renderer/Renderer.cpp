@@ -23,3 +23,7 @@ void Moonless::Renderer::Submit(const std::shared_ptr<Shader>& shader,
     vertexArray->Bind();
     RenderCommand::DrawIndexed(vertexArray);
 }
+
+void Moonless::Renderer::Init() {
+    RenderCommand::Init();
+}

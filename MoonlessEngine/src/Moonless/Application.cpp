@@ -6,7 +6,7 @@
 #include "Log.h"
 #include "Input.h"
 #include "KeyCodes.h"
-#include "Events/KeyEvent.h"
+#include "Renderer/Renderer.h"
 
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
@@ -22,6 +22,8 @@ Moonless::Application::Application(){
     });
 
     m_window->SetVSync(true);
+
+    Renderer::Init();
 
     m_imgui_layer = new ImguiLayer();
     PushOverlay(m_imgui_layer);

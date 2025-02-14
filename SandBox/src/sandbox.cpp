@@ -168,9 +168,6 @@ public:
 	}
 
     void OnUpdate() override {
-    	glEnable(GL_BLEND);
-    	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    	
 		Timestep delta_time = static_cast<float>(glfwGetTime()) - time;
 
     	time = static_cast<float>(glfwGetTime());
