@@ -2,6 +2,8 @@ workspace "MoonlessEngine"
     startproject "Sandbox"
     architecture "x64"
 
+    flags { "MultiProcessorCompile" }
+
     configurations{
         "Debug",
         "Release",
