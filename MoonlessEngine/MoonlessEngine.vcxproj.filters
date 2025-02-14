@@ -70,6 +70,9 @@
     <ClInclude Include="src\Moonless\MouseButtonCodes.h">
       <Filter>Moonless</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\OrthographicCameraController.h">
+      <Filter>Moonless</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\Buffer.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
@@ -149,6 +152,9 @@
       <Filter>Moonless</Filter>
     </ClCompile>
     <ClCompile Include="src\Moonless\Log.cpp">
+      <Filter>Moonless</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\OrthographicCameraController.cpp">
       <Filter>Moonless</Filter>
     </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\Buffer.cpp">

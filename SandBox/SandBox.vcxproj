@@ -78,7 +78,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_ENABLE_ASSERTS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_ENABLE_ASSERTS;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;..\MoonlessEngine\src;..\include\glad\include;..\MoonlessEngine\src\Moonless;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -98,7 +98,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_ENABLE_ASSERTS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_ENABLE_ASSERTS;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;..\MoonlessEngine\src;..\include\glad\include;..\MoonlessEngine\src\Moonless;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -118,7 +118,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_ENABLE_ASSERTS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_ENABLE_ASSERTS;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;..\MoonlessEngine\src;..\include\glad\include;..\MoonlessEngine\src\Moonless;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -142,10 +142,6 @@
     <ProjectReference Include="..\MoonlessEngine\MoonlessEngine.vcxproj">
       <Project>{4B4BC6D8-3719-BADE-20AD-2A050C1A9643}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="assets\shaders\flatColor.glsl" />
-    <Content Include="assets\shaders\Texture.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

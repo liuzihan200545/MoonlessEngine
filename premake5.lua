@@ -51,7 +51,7 @@ project "MoonlessEngine"
         "MoonlessEngine/src/",
         "%{IncludeDirs.Glad}",
         "%{IncludeDirs.Imgui}",
-	    "%{IncludeDirs.stb_image}"
+	"%{IncludeDirs.stb_image}"
     }
 
     libdirs {
@@ -65,7 +65,6 @@ project "MoonlessEngine"
         buildoptions { "/utf-8" }
 
         defines{
-            "ML_PLATFORM_WINDOWS",
             "ML_BUILD_DLL",
             "ML_ENABLE_ASSERTS",
             "GLFW_INCLUDE_NONE"
@@ -116,7 +115,6 @@ project "SandBox"
     buildoptions { "/utf-8" }
 
     defines{
-        "ML_PLATFORM_WINDOWS",
         "ML_ENABLE_ASSERTS"
     }
 

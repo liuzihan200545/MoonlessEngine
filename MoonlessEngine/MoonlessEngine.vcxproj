@@ -76,7 +76,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;..\include\stb_image\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -101,7 +101,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;..\include\stb_image\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -126,7 +126,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mlpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_PLATFORM_WINDOWS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;ML_BUILD_DLL;ML_ENABLE_ASSERTS;GLFW_INCLUDE_NONE;ML_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\include;src\Moonless;src;..\include\glad\include;..\include\imgui;..\include\stb_image\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
