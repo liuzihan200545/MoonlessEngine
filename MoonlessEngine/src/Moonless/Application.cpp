@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "KeyCodes.h"
 #include "Renderer/Renderer.h"
+#include <GLFW/glfw3.h>
 
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
@@ -36,6 +37,10 @@ Moonless::Application::~Application() {
 void Moonless::Application::run() {
     while (m_running)
     {
+        Timestep ts = static_cast<float>(glfwGetTime()) - time;
+
+        time = static_cast<float>(glfwGetTime());
+        
         if(Input::IsKeyPressed(ML_KEY_ESCAPE))
         {
             this->m_running = false;
@@ -45,7 +50,7 @@ void Moonless::Application::run() {
         {
             for (Layer* layer:m_layer_stack)
             {
-                layer->OnUpdate();
+                layer->OnUpdate(ts);
             }
         }
 

@@ -46,7 +46,7 @@ namespace Moonless
 
         bool m_Minimized = false;
     private:
-        
+        Timestep time;
     };
 
     Application* CreateApplication();

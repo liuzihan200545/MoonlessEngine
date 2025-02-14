@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Events/Event.h"
+#include "Moonless/Core/TimeStep.h"
+#include "Moonless/Events/Event.h"
 
 namespace Moonless
 {
@@ -12,7 +13,7 @@ namespace Moonless
 
         virtual ML_DLL_API void OnAttach() {}
         virtual ML_DLL_API void OnDetach() {}
-        virtual ML_DLL_API void OnUpdate() {}
+        virtual ML_DLL_API void OnUpdate(Timestep ts) {}
         virtual ML_DLL_API void OnImGuiRender() {}
         virtual ML_DLL_API void OnEvent(Event& event) {}
 

@@ -131,14 +131,10 @@ public:
     	m_ChernoLogoTexture = OpenGLTexture2D::Create("assets/textures/ChernoLogo.png");
 	}
 
-    void OnUpdate() override {
-		Timestep delta_time = static_cast<float>(glfwGetTime()) - time;
-
-    	time = static_cast<float>(glfwGetTime());
-
-    	ML_CLIENT_INFO("{} ms",delta_time.GetMilliseconds());
+    void OnUpdate(Timestep ts) override {
+    	ML_CLIENT_INFO("{} ms",ts.GetMilliseconds());
     	
-    	m_CameraController.OnUpdate(delta_time);
+    	m_CameraController.OnUpdate(ts);
 
     	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
     	
