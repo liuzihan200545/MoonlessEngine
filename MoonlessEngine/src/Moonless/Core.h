@@ -17,7 +17,7 @@ constexpr int BIT(int x) { return 1 << x; }
 #endif
 
 #ifdef ML_ENABLE_ASSERTS
-    #define ML_CORE_ASSERT(x,...)  {if(!x){ML_CORE_ERROR("Assertion failed: {0}",__VA_ARGS__);__debugbreak();}}
+    #define ML_CORE_ASSERT(x,...)  {if(!(x)){ML_CORE_ERROR("Assertion failed: {0}",__VA_ARGS__);__debugbreak();}}
 #else
     #define ML_CORE_ASSERT(x,...)  
 #endif
