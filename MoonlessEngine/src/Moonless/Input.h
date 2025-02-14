@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include <memory>
 
 namespace Moonless
 {
@@ -40,7 +41,7 @@ namespace Moonless
         virtual float GetMousePosYImpl() = 0;
 
     private:
-        static Input* m_handle;
+        static std::unique_ptr<Input> m_handle;
     };
 
 }

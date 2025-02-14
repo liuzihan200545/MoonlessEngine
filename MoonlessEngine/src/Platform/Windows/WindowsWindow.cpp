@@ -68,7 +68,7 @@ namespace Moonless
 
         m_window = glfwCreateWindow(m_data.Width,m_data.Height,m_data.Title.c_str(),nullptr,nullptr);
         
-        m_context = new OpenGLContext(m_window);
+        m_context = std::make_unique<OpenGLContext>(m_window);
 
         m_context->Init();
 

@@ -6,7 +6,7 @@
 namespace Moonless
 {
 
-Input* Input::m_handle = new WindowsInput(); 
+std::unique_ptr<Input> Input::m_handle = std::make_unique<WindowsInput>();
 
 bool WindowsInput::IsKeyPressedImpl(int keycode) {
     GLFWwindow* window = static_cast<GLFWwindow*>(Application::get().GetWindow().GetNativeWindow());

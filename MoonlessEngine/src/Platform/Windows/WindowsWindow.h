@@ -35,7 +35,7 @@ namespace Moonless
     private:
         GLFWwindow* m_window;
 
-        GraphicsContext* m_context;
+        std::unique_ptr<GraphicsContext> m_context;
         
         struct WindowData
         {

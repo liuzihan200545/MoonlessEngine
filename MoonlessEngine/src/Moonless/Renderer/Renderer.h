@@ -3,6 +3,7 @@
 #include "Shader.h"
 #include "Renderer/RendererAPI.h"
 #include "Renderer/OrthographicCamera.h"
+#include <memory>
 
 namespace Moonless {
 
@@ -23,7 +24,7 @@ namespace Moonless {
             glm::mat4 ViewProjectionMatrix;
         };
 
-        static SceneData* m_SceneData;
+        static std::unique_ptr<SceneData> m_SceneData;
     };
 
 }

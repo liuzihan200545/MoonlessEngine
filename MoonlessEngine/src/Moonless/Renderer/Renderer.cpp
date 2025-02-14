@@ -4,7 +4,7 @@
 #include "RenderCommand.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-Moonless::Renderer::SceneData* Moonless::Renderer::m_SceneData = new Renderer::SceneData;
+std::unique_ptr<Moonless::Renderer::SceneData> Moonless::Renderer::m_SceneData = std::make_unique<SceneData>();
 
 void Moonless::Renderer::BeginScene(OrthographicCamera& camera) {
     m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
