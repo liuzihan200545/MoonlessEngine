@@ -27,3 +27,7 @@ void Moonless::Renderer::Submit(const std::shared_ptr<Shader>& shader,
 void Moonless::Renderer::Init() {
     RenderCommand::Init();
 }
+
+void Moonless::Renderer::OnWindowResize(uint32_t width, uint32_t height) {
+    RenderCommand::SetViewport(0, 0, width, height);
+}

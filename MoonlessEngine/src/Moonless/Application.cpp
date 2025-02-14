@@ -8,8 +8,6 @@
 #include "KeyCodes.h"
 #include "Renderer/Renderer.h"
 
-#include <glad/glad.h>
-
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
 Moonless::Application::Application(){
@@ -43,9 +41,12 @@ void Moonless::Application::run() {
             this->m_running = false;
         }
         
-        for (Layer* layer:m_layer_stack)
+        if(!m_Minimized)
         {
-            layer->OnUpdate();
+            for (Layer* layer:m_layer_stack)
+            {
+                layer->OnUpdate();
+            }
         }
 
         m_imgui_layer->Begin();
@@ -64,18 +65,15 @@ void Moonless::Application::run() {
 void Moonless::Application::OnEvent(Event& e) {
     EventDispatcher dispatcher(e);
 
-    dispatcher.Dispatch<WindowCloseEvent>([this](WindowCloseEvent& e)->bool
+    dispatcher.Dispatch<WindowCloseEvent>([&](WindowCloseEvent& e)->bool
     {
-        this->m_running = false;
-        return true;
+        return this->OnWindowClose(e);
     });
 
-    //TODO: Fix viewport resize when window is resized.
-    /*dispatcher.Dispatch<WindowResizeEvent>([this](WindowResizeEvent& e)->bool
+    dispatcher.Dispatch<WindowResizeEvent>([&](WindowResizeEvent& e)->bool
     {
-        glViewport(0,0,m_window->GetWidth(),m_window->GetHeight());
-        return false;
-    });*/
+        return this->OnWindowResize(e);
+    });
 
     for(auto it = m_layer_stack.rbegin();it!=m_layer_stack.rend();++it)
     {
@@ -97,6 +95,22 @@ void Moonless::Application::PushLayer(Layer* layer) {
 void Moonless::Application::PushOverlay(Layer* layer) {
     m_layer_stack.PushOverlay(layer);
     layer->OnAttach();
+}
+
+bool Moonless::Application::OnWindowClose(WindowCloseEvent& e) {
+    this->m_running = false;
+    return true;
+}
+
+bool Moonless::Application::OnWindowResize(WindowResizeEvent& e) {
+    if (e.GetWidth() == 0 || e.GetHeight() == 0)
+    {
+        m_Minimized = true;
+        return false;
+    }
+    m_Minimized = false;
+    Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+    return false;
 }
 
 
