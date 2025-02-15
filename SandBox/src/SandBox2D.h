@@ -3,6 +3,8 @@
 #include <Moonless.h>
 #include <memory>
 
+#include "Renderer/Texture.h"
+
 using namespace Moonless;
 
 class SandBox2D : public Moonless::Layer{
@@ -18,10 +20,10 @@ private:
     OrthographicCameraController m_CameraController;
 
     // Temp
-    std::shared_ptr<VertexArray> m_SquareVA;
-    std::shared_ptr<Shader> m_FlatColorShader;
 
     glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+    std::shared_ptr<Texture2D> m_check_board;
 
     Timestep ts;
     
