@@ -26,5 +26,12 @@ private:
     std::shared_ptr<Texture2D> m_check_board;
 
     Timestep ts;
+
+    struct ProfileResult
+    {
+        const char* Name;
+        float Time;
+    };
+    std::vector<ProfileResult> m_ProfileResults;
     
 };

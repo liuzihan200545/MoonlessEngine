@@ -16,6 +16,7 @@
 #include "Moonless/Renderer/OrthographicCamera.h"
 #include "Moonless/Core/OrthographicCameraController.h"
 #include "Moonless/Renderer/Buffer.h"
+#include "Moonless/Renderer/Renderer2D.h"
 
 #include "Moonless/Events/Event.h"
 #include "Moonless/Events/KeyEvent.h"
