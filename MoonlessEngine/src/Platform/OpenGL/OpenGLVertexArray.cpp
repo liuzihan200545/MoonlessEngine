@@ -33,7 +33,7 @@ void Moonless::OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBu
             ShaderDataTypeToOpenGLBaseType(element.type),
             element.normalized ? GL_TRUE : GL_FALSE,
             layout.getStride(),
-            reinterpret_cast<const void*>(element.offset));
+            reinterpret_cast<const void *>(element.offset));
         m_VertexBufferIndex++;
     }
     

@@ -38,7 +38,7 @@ struct BufferElement {
     std::string name;
     ShaderDataType type;
     uint32_t size;
-    uint32_t offset;
+    size_t offset;
     bool normalized;
 
     BufferElement(ShaderDataType type,const std::string& name,bool normalized = false):
@@ -85,7 +85,7 @@ public:
 
 private:
     void CalculateOffsetsAndStride() {
-        uint32_t offset = 0;
+        size_t offset = 0;
         m_stride = 0;
         for (auto& element : m_elements)
         {
