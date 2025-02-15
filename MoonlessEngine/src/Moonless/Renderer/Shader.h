@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include <unordered_map>
+#include <glm/glm.hpp>
 
 namespace Moonless {
 
@@ -17,6 +18,14 @@ public:
 
     static std::shared_ptr<Shader> Create(const std::string& shaerName,const std::string& vertexSrc, const std::string& fragmentSrc);
     static std::shared_ptr<Shader> Create(const std::string& filepath);
+
+    virtual void UploadUniformInt(const std::string& name, int value) = 0;
+    virtual void UploadUniformFloat(const std::string& name, float value) = 0;
+    virtual void UploadUniformFloat2(const std::string& name, const glm::vec2& value) = 0;
+    virtual void UploadUniformFloat3(const std::string& name, const glm::vec3& value) = 0;
+    virtual void UploadUniformFloat4(const std::string& name, const glm::vec4& value) = 0;
+    virtual void UploadUniformMat3(const std::string& name, const glm::mat3& matrix) = 0;
+    virtual void UploadUniformMat4(const std::string& name, const glm::mat4& matrix) = 0;
 };
 
 class ShaderLibrary
