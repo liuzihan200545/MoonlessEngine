@@ -10,7 +10,7 @@
 namespace Moonless
 {
 
-    static bool m_is_glfw_initialized = false;
+    static uint8_t m_is_glfw_initialized = 0;
 
     Window* Window::Create(const WindowProps& props) {
         return new WindowsWindow(props);
@@ -53,8 +53,10 @@ namespace Moonless
 
         ML_CORE_INFO("Creating Window {0}({1},{2})",props.Title,props.Width,props.Height);
 
-        if(!m_is_glfw_initialized)
+        if(m_is_glfw_initialized == 0)
         {
+            ML_CORE_INFO("Initializing GLFW");
+            
             int success = glfwInit();
             ML_CORE_ASSERT(success,"Couldn't Initialize GLFW")
 
@@ -62,11 +64,11 @@ namespace Moonless
             {
                 ML_CORE_ERROR("GLFW ERROR: {0} with {1}",description,error_code);
             });
-
-            m_is_glfw_initialized = true;
         }
 
         m_window = glfwCreateWindow(m_data.Width,m_data.Height,m_data.Title.c_str(),nullptr,nullptr);
+
+        ++m_is_glfw_initialized;
         
         m_context = std::make_unique<OpenGLContext>(m_window);
 
@@ -169,5 +171,11 @@ namespace Moonless
 
     void WindowsWindow::ShutDown() {
         glfwDestroyWindow(m_window);
+
+        if( --m_is_glfw_initialized == 0 )
+        {
+            ML_CORE_INFO("Terminating GLFW");
+            glfwTerminate();
+        }
     }
 }

@@ -38,7 +38,7 @@ void SandBox2D::OnUpdate(Moonless::Timestep ts) {
 
     Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-    Renderer2D::DrawQuad({0.0f,0.0f},{1.0f,1.0f},{0.5f,0.5f,0.8f,1.0f});
+    Renderer2D::DrawQuad({0.0f,0.0f},{1.0f,1.0f},m_SquareColor);
         
     Renderer2D::EndScene();
 }
