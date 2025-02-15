@@ -21,4 +21,18 @@ std::shared_ptr<Texture2D> Texture2D::Create(const std::string& path) {
     }
 }
 
+std::shared_ptr<Texture2D> Texture2D::Create(uint32_t width, uint32_t height) {
+    switch (RendererAPI::GetAPI())
+    {
+    case RendererAPI::API::OpenGL:
+        {
+            return std::make_shared<OpenGLTexture2D>(width,height);
+        }
+    case RendererAPI::API::None:
+        {
+            ML_CORE_ASSERT(false, "RendererAPI::None is currently not supported!")
+        }
+    }
+}
+
 }
