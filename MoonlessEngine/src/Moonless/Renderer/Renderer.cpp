@@ -2,6 +2,7 @@
 #include "Renderer.h"
 
 #include "RenderCommand.h"
+#include "Renderer2D.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 std::unique_ptr<Moonless::Renderer::SceneData> Moonless::Renderer::m_SceneData = std::make_unique<SceneData>();
@@ -26,6 +27,7 @@ void Moonless::Renderer::Submit(const std::shared_ptr<Shader>& shader,
 
 void Moonless::Renderer::Init() {
     RenderCommand::Init();
+    Renderer2D::Init();
 }
 
 void Moonless::Renderer::OnWindowResize(uint32_t width, uint32_t height) {

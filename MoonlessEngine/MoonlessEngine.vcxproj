@@ -169,6 +169,7 @@
     <ClInclude Include="src\Moonless\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Moonless\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Moonless\Renderer\Renderer.h" />
+    <ClInclude Include="src\Moonless\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Moonless\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Moonless\Renderer\Shader.h" />
     <ClInclude Include="src\Moonless\Renderer\Texture.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="src\Moonless\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Moonless\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Moonless\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Moonless\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Shader.cpp" />
     <ClCompile Include="src\Moonless\Renderer\Texture.cpp" />
