@@ -5,7 +5,9 @@
 #include <Renderer/Texture.h>
 #include <Platform/OpenGL/OpenGLTexture2D.h>
 #include <Moonless/OrthographicCameraController.h>
-
+// Entry Point
+#include "SandBox2D.h"
+#include "Moonless/EntryPoint.h"
 
 using namespace Moonless;
 
@@ -186,8 +188,11 @@ public:
 class Sandbox : public Moonless::Application {
 public:
     Sandbox() {
-        ExampleLayer* layer = new ExampleLayer();
-        PushLayer(layer);
+        /*ExampleLayer* layer = new ExampleLayer();
+        PushLayer(layer);*/
+
+    	SandBox2D* layer = new SandBox2D();
+    	PushLayer(layer);
     }
 
     ~Sandbox() override {

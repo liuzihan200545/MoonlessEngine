@@ -137,11 +137,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\sandbox.cpp" />
+    <ClCompile Include="src\SandBox2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoonlessEngine\MoonlessEngine.vcxproj">
       <Project>{4B4BC6D8-3719-BADE-20AD-2A050C1A9643}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\SandBox2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

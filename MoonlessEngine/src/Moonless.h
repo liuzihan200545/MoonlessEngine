@@ -14,6 +14,7 @@
 #include "Moonless/Renderer/Renderer.h"
 #include "Moonless/Renderer/RenderCommand.h"
 #include "Moonless/Renderer/OrthographicCamera.h"
+#include "Moonless/OrthographicCameraController.h"
 #include "Moonless/Renderer/Buffer.h"
 
 #include "Moonless/Events/Event.h"
@@ -23,5 +24,3 @@
 
 #include "Moonless/Core/TimeStep.h"
 
-// Entry Point
-#include "Moonless/EntryPoint.h"
