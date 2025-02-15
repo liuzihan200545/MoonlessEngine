@@ -2,8 +2,8 @@
 
 #include "mlpch.h"
 
-#include <Moonless/Core.h>
-#include "Events/Event.h"
+#include <Moonless/Core/Core.h>
+#include "Moonless/Events/Event.h"
 
 namespace Moonless
 {

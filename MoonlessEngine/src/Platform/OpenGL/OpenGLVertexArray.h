@@ -1,7 +1,7 @@
 #pragma once
 
 #include "glad/glad.h"
-#include "Renderer/VertexArray.h"
+#include "Moonless/Renderer/VertexArray.h"
 
 namespace Moonless
 {

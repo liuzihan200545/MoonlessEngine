@@ -1,6 +1,6 @@
 #pragma once
 #include "mlpch.h"
-#include "Moonless/Input.h"
+#include "Moonless/Core/Input.h"
 
 namespace Moonless
 {

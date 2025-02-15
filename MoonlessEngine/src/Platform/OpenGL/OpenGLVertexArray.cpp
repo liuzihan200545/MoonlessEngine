@@ -1,6 +1,6 @@
 #include "mlpch.h"
 #include "glad/glad.h"
-#include "OpenGLVertexArray.h"
+#include "Platform/OpenGL/OpenGLVertexArray.h"
 
 Moonless::OpenGLVertexArray::OpenGLVertexArray() {
     glCreateVertexArrays(1, &m_RendererID);

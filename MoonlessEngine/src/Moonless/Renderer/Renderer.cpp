@@ -1,8 +1,8 @@
 #include "mlpch.h"
-#include "Renderer.h"
+#include "Moonless/Renderer/Renderer.h"
 
-#include "RenderCommand.h"
-#include "Renderer2D.h"
+#include "Moonless/Renderer/RenderCommand.h"
+#include "Moonless/Renderer/Renderer2D.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 std::unique_ptr<Moonless::Renderer::SceneData> Moonless::Renderer::m_SceneData = std::make_unique<SceneData>();

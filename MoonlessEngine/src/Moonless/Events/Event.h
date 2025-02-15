@@ -1,7 +1,7 @@
 #pragma once
 
 #include "mlpch.h"
-#include "Core.h"
+#include "Moonless/Core/Core.h"
 
 namespace Moonless
 {

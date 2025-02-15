@@ -1,7 +1,7 @@
 #include "mlpch.h"
-#include "WindowsInput.h"
+#include "Platform/Windows/WindowsInput.h"
 #include "GLFW/glfw3.h"
-#include "Moonless/Application.h"
+#include "Moonless/Core/Application.h"
 
 namespace Moonless
 {

@@ -1,10 +1,10 @@
 #include "mlpch.h"
 #include "glad/glad.h"
-#include "WindowsWindow.h"
-#include "Log.h"
-#include "Events/ApplicationEvent.h"
-#include "Events/KeyEvent.h"
-#include "Events/MouseEvent.h"
+#include "Platform/Windows/WindowsWindow.h"
+#include "Moonless/Core/Log.h"
+#include "Moonless/Events/ApplicationEvent.h"
+#include "Moonless/Events/KeyEvent.h"
+#include "Moonless/Events/MouseEvent.h"
 #include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Moonless

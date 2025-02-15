@@ -1,7 +1,6 @@
 #pragma once
 
-#include "glad/glad.h"
-#include "Renderer/Buffer.h"
+#include "Moonless/Renderer/Buffer.h"
 
 namespace Moonless
 {

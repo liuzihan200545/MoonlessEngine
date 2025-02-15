@@ -1,20 +1,20 @@
 #pragma once
 
 // for Moonless Application
-#include "Moonless/Application.h"
-#include "Moonless/Core.h"
+#include "Moonless/Core/Application.h"
+#include "Moonless/Core/Core.h"
 
-#include "Moonless/Layer.h"
+#include "Moonless/Core/Layer.h"
 #include "Moonless/imgui/ImguiLayer.h"
 
-#include "Moonless/Input.h"
-#include "Moonless/KeyCodes.h"
-#include "Moonless/MouseButtonCodes.h"
+#include "Moonless/Core/Input.h"
+#include "Moonless/Core/KeyCodes.h"
+#include "Moonless/Core/MouseButtonCodes.h"
 
 #include "Moonless/Renderer/Renderer.h"
 #include "Moonless/Renderer/RenderCommand.h"
 #include "Moonless/Renderer/OrthographicCamera.h"
-#include "Moonless/OrthographicCameraController.h"
+#include "Moonless/Core/OrthographicCameraController.h"
 #include "Moonless/Renderer/Buffer.h"
 
 #include "Moonless/Events/Event.h"

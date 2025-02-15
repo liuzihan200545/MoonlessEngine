@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Moonless/Window.h"
+#include "Moonless/Core/Window.h"
 #include <GLFW/glfw3.h>
-#include "Renderer/GraphicsContext.h"
+#include "Moonless/Renderer/GraphicsContext.h"
 
 namespace Moonless
 {

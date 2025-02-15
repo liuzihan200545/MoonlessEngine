@@ -1,6 +1,6 @@
 #include "mlpch.h"
-#include "OpenGLBuffer.h"
-
+#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLBuffer.h"
 // VertexBuffer
 
 Moonless::OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size) {

@@ -1,6 +1,6 @@
 #include "mlpch.h"
-#include "VertexArray.h"
-#include "Renderer/Renderer.h"
+#include "Moonless/Renderer/VertexArray.h"
+#include "Moonless/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Moonless

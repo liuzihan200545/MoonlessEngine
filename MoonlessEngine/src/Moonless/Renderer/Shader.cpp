@@ -1,7 +1,7 @@
 #include "mlpch.h"
-#include "Shader.h"
-#include "Renderer.h"
-#include "Renderer/RendererAPI.h"
+#include "Moonless/Renderer/Shader.h"
+#include "Moonless/Renderer/Renderer.h"
+#include "Moonless/Renderer/RendererAPI.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Moonless {

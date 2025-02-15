@@ -1,9 +1,9 @@
 #include "mlpch.h"
-#include "Buffer.h"
+#include "Moonless/Renderer/Buffer.h"
 
-#include "Core.h"
-#include "Log.h"
-#include "Renderer.h"
+#include "Moonless/Core/Core.h"
+#include "Moonless/Core/Log.h"
+#include "Moonless/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"
 
 namespace Moonless {

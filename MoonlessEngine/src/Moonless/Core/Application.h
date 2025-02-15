@@ -1,12 +1,11 @@
 #pragma once
 
-#include "imgui/imgui.h"
-#include "Core.h"
-#include "LayerStack.h"
-#include "Log.h"
-#include "Window.h"
-#include "Events/ApplicationEvent.h"
-#include "imgui/ImguiLayer.h"
+#include "Moonless/Core/Core.h"
+#include "Moonless/Core/LayerStack.h"
+#include "Moonless/Core/Log.h"
+#include "Moonless/Core/Window.h"
+#include "Moonless/Events/ApplicationEvent.h"
+#include "Moonless/imgui/ImguiLayer.h"
 
 namespace Moonless
 {

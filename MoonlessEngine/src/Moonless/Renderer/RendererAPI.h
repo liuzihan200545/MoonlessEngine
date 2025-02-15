@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include "Renderer/VertexArray.h"
+#include "Moonless/Renderer/VertexArray.h"
 
 namespace Moonless
 {

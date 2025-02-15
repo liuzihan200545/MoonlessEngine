@@ -1,12 +1,12 @@
 #include "mlpch.h"
-#include "Application.h"
+#include "Moonless/Core/Application.h"
 
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
-#include "Log.h"
-#include "Input.h"
-#include "KeyCodes.h"
-#include "Renderer/Renderer.h"
+#include "Moonless/Events/Event.h"
+#include "Moonless/Events/ApplicationEvent.h"
+#include "Moonless/Core/Log.h"
+#include "Moonless/Core/Input.h"
+#include "Moonless/Core/KeyCodes.h"
+#include "Moonless/Renderer/Renderer.h"
 #include <GLFW/glfw3.h>
 
 Moonless::Application* Moonless::Application::m_handle = nullptr;

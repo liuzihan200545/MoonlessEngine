@@ -1,8 +1,8 @@
 #include "mlpch.h"
 #include <glad/glad.h>
-#include "OpenGLTexture2D.h"
+#include "Platform/OpenGL/OpenGLTexture2D.h"
 #include <stb_image.h>
-#include "Log.h"
+#include "Moonless/Core/Log.h"
 
 namespace Moonless
 {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Log.h"
-#include "Core.h"
+#include "Moonless/Core/Log.h"
+#include "Moonless/Core/Core.h"
 #include <string>
 #include <memory>
 

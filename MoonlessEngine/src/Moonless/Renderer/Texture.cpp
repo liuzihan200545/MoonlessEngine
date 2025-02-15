@@ -1,7 +1,6 @@
 #include "mlpch.h"
-#include "Texture.h"
-
-#include "Renderer/RendererAPI.h"
+#include "Moonless/Renderer/Texture.h"
+#include "Moonless/Renderer/RendererAPI.h"
 #include "Platform/OpenGL/OpenGLTexture2D.h"
 
 namespace Moonless

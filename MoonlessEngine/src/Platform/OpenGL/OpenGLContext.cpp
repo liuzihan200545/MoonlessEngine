@@ -1,9 +1,9 @@
 #include "mlpch.h"
 #include <GLFW/glfw3.h>
 #include "glad/glad.h"
-#include "OpenGLContext.h"
-#include "Log.h"
-#include "Core.h"
+#include "Platform/OpenGL/OpenGLContext.h"
+#include "Moonless/Core/Log.h"
+#include "Moonless/Core/Core.h"
 #include <gl/GL.h>
 
 Moonless::OpenGLContext::OpenGLContext(GLFWwindow* window) : m_WindowHandle(window) {

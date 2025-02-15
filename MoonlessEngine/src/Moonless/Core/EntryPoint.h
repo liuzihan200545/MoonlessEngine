@@ -1,8 +1,8 @@
 #pragma once
-#include "Application.h"
+#include "Moonless/Core/Application.h"
 #include <spdlog/spdlog.h>
 
-#include "Log.h"
+#include "Moonless/Core/Log.h"
 
 #ifdef ML_PLATFORM_WINDOWS
 

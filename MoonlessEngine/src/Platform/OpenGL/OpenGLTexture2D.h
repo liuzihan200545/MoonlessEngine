@@ -1,6 +1,6 @@
 #pragma once
 #include <glad/glad.h>
-#include "Renderer/Texture.h"
+#include "Moonless/Renderer/Texture.h"
 #include <string>
 
 namespace Moonless

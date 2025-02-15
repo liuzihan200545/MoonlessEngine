@@ -3,8 +3,8 @@
 #include "mlpch.h"
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
-#include "Core.h"
-#include "Events/Event.h"
+#include "Moonless/Core/Core.h"
+#include "Moonless/Events/Event.h"
 
 template <class T>
 struct fmt::formatter<T, std::enable_if_t<std::is_base_of_v<Moonless::Event, T>, char>> {

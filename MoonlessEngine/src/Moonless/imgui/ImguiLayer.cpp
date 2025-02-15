@@ -1,10 +1,10 @@
 #include "mlpch.h"
 
-#include "ImguiLayer.h"
-#include "imgui.h"
-#include "imgui_impl_opengl3.h"
-#include "imgui_impl_glfw.h"
-#include <Application.h>
+#include "Moonless/imgui/ImguiLayer.h"
+#include <imgui/imgui.h>
+#include "Moonless/imgui/imgui_impl_opengl3.h"
+#include "Moonless/imgui/imgui_impl_glfw.h"
+#include <Moonless/Core/Application.h>
 
 #include <GLFW/glfw3.h>
 

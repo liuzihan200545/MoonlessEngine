@@ -1,9 +1,9 @@
 #include "mlpch.h"
-#include "OpenGLShader.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
-#include "Log.h"
+#include "Moonless/Core/Log.h"
 #include <fstream>
 namespace Moonless
 {
