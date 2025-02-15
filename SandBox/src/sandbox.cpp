@@ -1,5 +1,4 @@
 #include <Moonless.h>
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <Platform/OpenGL/OpenGLShader.h>
@@ -22,8 +21,7 @@ public:
 	         0.0f,  0.5f, 0.0f, 0.5f,0.5f,0.8f,1.0f
 	    };
 
-	    std::shared_ptr<VertexBuffer> vertexBuffer;
-	    vertexBuffer.reset(VertexBuffer::Create(vertices,sizeof(vertices)));
+	    std::shared_ptr<VertexBuffer> vertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));
 
 	    BufferLayout layout = {
 	        { ShaderDataType::Float3, "position"},
@@ -33,8 +31,7 @@ public:
 	    
 	    unsigned int indices[3] = { 0, 1, 2 };
 
-	    std::shared_ptr<IndexBuffer> indexBuffer;
-	    indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+	    std::shared_ptr<IndexBuffer> indexBuffer = IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 	    
 	    std::string vertexSrc = R"(
 				#version 330 core
@@ -66,7 +63,7 @@ public:
 			)";
 
 	    // object2:
-	    m_SquareVA.reset(VertexArray::Create());
+	    m_SquareVA = VertexArray::Create();
 
 	    float squareVertices[5 * 4] = {
 	    	-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -75,8 +72,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 	    };
 
-	    std::shared_ptr<VertexBuffer> square_vb;
-	    square_vb.reset(VertexBuffer::Create(squareVertices,sizeof(squareVertices)));
+	    std::shared_ptr<VertexBuffer> square_vb = VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 
 	    square_vb->SetLayout({
 	            { ShaderDataType::Float3, "a_Position" },
@@ -85,8 +81,7 @@ public:
 	    
 	    uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 	    
-	    std::shared_ptr<IndexBuffer> square_ib;
-	    square_ib.reset(IndexBuffer::Create(squareIndices,sizeof(squareIndices)/sizeof(uint32_t)));
+	    std::shared_ptr<IndexBuffer> square_ib = IndexBuffer::Create(squareIndices,sizeof(squareIndices)/sizeof(uint32_t));
 
 	    m_SquareVA->AddVertexBuffer(square_vb);
 	    m_SquareVA->SetIndexBuffer(square_ib);
