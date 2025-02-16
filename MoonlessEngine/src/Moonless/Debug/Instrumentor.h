@@ -104,10 +104,10 @@ namespace Moonless {
 }
 #define ML_PROFILE 1
 #if ML_PROFILE
-	#define ML_PROFILE_BEGIN_SESSION(name, filepath) ::Hazel::Instrumentor::Get().BeginSession(name, filepath)
-	#define ML_PROFILE_END_SESSION() ::Hazel::Instrumentor::Get().EndSession()
-	#define ML_PROFILE_SCOPE(name) ::Hazel::InstrumentationTimer timer##__LINE__(name);
-	#define ML_PROFILE_FUNCTION() HZ_PROFILE_SCOPE(__FUNCSIG__)
+	#define ML_PROFILE_BEGIN_SESSION(name, filepath) ::Moonless::Instrumentor::Get().BeginSession(name, filepath)
+	#define ML_PROFILE_END_SESSION() ::Moonless::Instrumentor::Get().EndSession()
+	#define ML_PROFILE_SCOPE(name) ::Moonless::InstrumentationTimer timer##__LINE__(name);
+	#define ML_PROFILE_FUNCTION() ML_PROFILE_SCOPE(__FUNCSIG__)
 #else
 	#define ML_PROFILE_BEGIN_SESSION(name, filepath)
 	#define ML_PROFILE_END_SESSION()
