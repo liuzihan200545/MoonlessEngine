@@ -16,4 +16,4 @@ include/imgui/examples
 
 # Files
 *.user
-
+SandBox/*.json
