@@ -24,7 +24,10 @@ Moonless::Application::Application(){
         this->OnEvent(e);
     });
 
-    m_window->SetVSync(true);
+    {
+        ML_PROFILE_SCOPE("SetVSync");
+        m_window->SetVSync(true);
+    }
 
     Renderer::Init();
 

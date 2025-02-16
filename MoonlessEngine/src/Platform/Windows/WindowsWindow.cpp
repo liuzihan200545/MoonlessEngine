@@ -67,20 +67,26 @@ namespace Moonless
 
         ML_CORE_INFO("Creating Window {0}({1},{2})",props.Title,props.Width,props.Height);
 
-        if(m_is_glfw_initialized == 0)
         {
-            ML_CORE_INFO("Initializing GLFW");
-            
-            int success = glfwInit();
-            ML_CORE_ASSERT(success,"Couldn't Initialize GLFW")
-
-            glfwSetErrorCallback([](int error_code, const char* description)
+            ML_PROFILE_SCOPE("GLFW Init");
+            if(m_is_glfw_initialized == 0)
             {
-                ML_CORE_ERROR("GLFW ERROR: {0} with {1}",description,error_code);
-            });
+                ML_CORE_INFO("Initializing GLFW");
+            
+                int success = glfwInit();
+                ML_CORE_ASSERT(success,"Couldn't Initialize GLFW")
+
+                glfwSetErrorCallback([](int error_code, const char* description)
+                {
+                    ML_CORE_ERROR("GLFW ERROR: {0} with {1}",description,error_code);
+                });
+            }
         }
 
-        m_window = glfwCreateWindow(m_data.Width,m_data.Height,m_data.Title.c_str(),nullptr,nullptr);
+        {
+            ML_PROFILE_SCOPE("glfwCreateWindow");
+            m_window = glfwCreateWindow(m_data.Width,m_data.Height,m_data.Title.c_str(),nullptr,nullptr);
+        }
 
         ++m_is_glfw_initialized;
         
