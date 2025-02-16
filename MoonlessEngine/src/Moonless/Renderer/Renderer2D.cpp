@@ -89,16 +89,16 @@ namespace Moonless
         RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
     }
 
-    void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture, float tiling_factor) {
+    void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color) {
         ML_PROFILE_FUNCTION();
 
-        DrawQuad({position.x,position.y,0.0f},size,texture,tiling_factor);
+        DrawQuad({position.x,position.y,0.0f},size,texture,tiling_factor,tint_color);
     }
 
-    void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture, float tiling_factor) {
+    void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color) {
         ML_PROFILE_FUNCTION();
 
-        s_Data->TextureShader->UploadUniformFloat4("u_Color", glm::vec4(1.0f));
+        s_Data->TextureShader->UploadUniformFloat4("u_Color", tint_color);
         texture->Bind();
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
@@ -129,17 +129,17 @@ namespace Moonless
     }
 
     void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation,
-        const std::shared_ptr<Texture2D>& texture, float tiling_factor)
+        const std::shared_ptr<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color)
     {
-        DrawRotatedQuad({position.x,position.y,0.0f},size,rotation,texture,tiling_factor);
+        DrawRotatedQuad({position.x,position.y,0.0f},size,rotation,texture,tiling_factor,tint_color);
     }
 
     void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation,
-        const std::shared_ptr<Texture2D>& texture, float tiling_factor)
+        const std::shared_ptr<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color)
     {
         ML_PROFILE_FUNCTION();
 
-        s_Data->TextureShader->UploadUniformFloat4("u_Color", glm::vec4(1.0f));
+        s_Data->TextureShader->UploadUniformFloat4("u_Color", tint_color);
         texture->Bind();
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
