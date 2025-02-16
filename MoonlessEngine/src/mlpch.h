@@ -16,3 +16,4 @@
 #include <iostream>
 #include <string>
 #include <type_traits>
+#include <Moonless/Debug/Instrumentor.h>

@@ -161,6 +161,7 @@
     <ClInclude Include="src\Moonless\Core\OrthographicCameraController.h" />
     <ClInclude Include="src\Moonless\Core\TimeStep.h" />
     <ClInclude Include="src\Moonless\Core\Window.h" />
+    <ClInclude Include="src\Moonless\Debug\Instrumentor.h" />
     <ClInclude Include="src\Moonless\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Moonless\Events\Event.h" />
     <ClInclude Include="src\Moonless\Events\KeyEvent.h" />
