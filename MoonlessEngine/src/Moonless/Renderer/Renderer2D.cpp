@@ -84,17 +84,18 @@ namespace Moonless
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
         s_Data->TextureShader->UploadUniformMat4("u_Transform", transform);
+        s_Data->TextureShader->UploadUniformFloat("u_Tiling_Factor",1.0f);
         s_Data->QuadVertexArray->Bind();
         RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
     }
 
-    void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture) {
+    void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture, float tiling_factor) {
         ML_PROFILE_FUNCTION();
 
-        DrawQuad({position.x,position.y,0.0f},size,texture);
+        DrawQuad({position.x,position.y,0.0f},size,texture,tiling_factor);
     }
 
-    void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture) {
+    void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture, float tiling_factor) {
         ML_PROFILE_FUNCTION();
 
         s_Data->TextureShader->UploadUniformFloat4("u_Color", glm::vec4(1.0f));
@@ -102,9 +103,53 @@ namespace Moonless
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
         s_Data->TextureShader->UploadUniformMat4("u_Transform", transform);
+        s_Data->TextureShader->UploadUniformFloat("u_Tiling_Factor",tiling_factor);
 
         s_Data->QuadVertexArray->Bind();
         RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
     }
 
+    void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color) {
+        DrawRotatedQuad({position.x,position.y,0.0f},size,rotation,color);
+    }
+
+    void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color) {
+        ML_PROFILE_FUNCTION();
+
+        s_Data->TextureShader->UploadUniformFloat4("u_Color", color);
+        s_Data->WhiteTexture->Bind();
+
+        glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
+                            * glm::rotate(glm::mat4(1.0f),rotation, {0.0f,0.0f,1.0f})
+                            * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+        s_Data->TextureShader->UploadUniformMat4("u_Transform", transform);
+        s_Data->TextureShader->UploadUniformFloat("u_Tiling_Factor",1.0f);
+        s_Data->QuadVertexArray->Bind();
+        RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
+    }
+
+    void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation,
+        const std::shared_ptr<Texture2D>& texture, float tiling_factor)
+    {
+        DrawRotatedQuad({position.x,position.y,0.0f},size,rotation,texture,tiling_factor);
+    }
+
+    void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation,
+        const std::shared_ptr<Texture2D>& texture, float tiling_factor)
+    {
+        ML_PROFILE_FUNCTION();
+
+        s_Data->TextureShader->UploadUniformFloat4("u_Color", glm::vec4(1.0f));
+        texture->Bind();
+
+        glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
+                            * glm::rotate(glm::mat4(1.0f),rotation, {0.0f,0.0f,1.0f})
+                            * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+        
+        s_Data->TextureShader->UploadUniformMat4("u_Transform", transform);
+        s_Data->TextureShader->UploadUniformFloat("u_Tiling_Factor",tiling_factor);
+
+        s_Data->QuadVertexArray->Bind();
+        RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
+    }
 }
