@@ -26,7 +26,7 @@ void Moonless::Renderer::Submit(const std::shared_ptr<Shader>& shader,
     std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_Transform",transform);
     
     vertexArray->Bind();
-    RenderCommand::DrawIndexed(vertexArray);
+    /*RenderCommand::DrawIndexed(vertexArray);*/
 }
 
 void Moonless::Renderer::Init() {
