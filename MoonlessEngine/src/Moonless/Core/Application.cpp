@@ -12,6 +12,8 @@
 Moonless::Application* Moonless::Application::m_handle = nullptr;
 
 Moonless::Application::Application(){
+    ML_PROFILE_FUNCTION();
+    
     ML_CORE_ASSERT(!m_handle,"Application already exists.")
     
     m_handle = this;
@@ -31,23 +33,32 @@ Moonless::Application::Application(){
 }
 
 Moonless::Application::~Application() {
+    ML_PROFILE_FUNCTION();
+
     ML_CORE_INFO("Moonless Engine exit.");
 }
 
 void Moonless::Application::run() {
+    ML_PROFILE_FUNCTION();
+
     while (m_running)
     {
+        ML_PROFILE_SCOPE("Run Loop");
+        
         Timestep ts = static_cast<float>(glfwGetTime()) - time;
 
         time = static_cast<float>(glfwGetTime());
-        
+
+        //Temp
         if(Input::IsKeyPressed(ML_KEY_ESCAPE))
         {
             this->m_running = false;
         }
+        //
         
         if(!m_Minimized)
         {
+            ML_PROFILE_SCOPE("Layer Stack OnUpdate");
             for (Layer* layer:m_layer_stack)
             {
                 layer->OnUpdate(ts);
@@ -56,9 +67,12 @@ void Moonless::Application::run() {
 
         m_imgui_layer->Begin();
 
-        for(Layer* layer : m_layer_stack)
         {
-            layer->OnImGuiRender();
+            ML_PROFILE_SCOPE("Layer Stack OnImguiRender");
+            for(Layer* layer : m_layer_stack)
+            {
+                layer->OnImGuiRender();
+            }
         }
         
         m_imgui_layer->End();
@@ -68,6 +82,8 @@ void Moonless::Application::run() {
 }
 
 void Moonless::Application::OnEvent(Event& e) {
+    ML_PROFILE_FUNCTION();
+
     EventDispatcher dispatcher(e);
 
     dispatcher.Dispatch<WindowCloseEvent>([&](WindowCloseEvent& e)->bool
@@ -93,21 +109,29 @@ void Moonless::Application::OnEvent(Event& e) {
 }
 
 void Moonless::Application::PushLayer(Layer* layer) {
+    ML_PROFILE_FUNCTION();
+
     m_layer_stack.PushLayer(layer);
     layer->OnAttach();
 }
 
 void Moonless::Application::PushOverlay(Layer* layer) {
+    ML_PROFILE_FUNCTION();
+
     m_layer_stack.PushOverlay(layer);
     layer->OnAttach();
 }
 
 bool Moonless::Application::OnWindowClose(WindowCloseEvent& e) {
+    ML_PROFILE_FUNCTION();
+
     this->m_running = false;
     return true;
 }
 
 bool Moonless::Application::OnWindowResize(WindowResizeEvent& e) {
+    ML_PROFILE_FUNCTION();
+
     if (e.GetWidth() == 0 || e.GetHeight() == 0)
     {
         m_Minimized = true;

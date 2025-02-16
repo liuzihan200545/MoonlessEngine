@@ -7,10 +7,14 @@
 #include <gl/GL.h>
 
 Moonless::OpenGLContext::OpenGLContext(GLFWwindow* window) : m_WindowHandle(window) {
+    ML_PROFILE_FUNCTION();
+
     ML_CORE_ASSERT(m_WindowHandle, "Window handle is null!")
 }
 
 void Moonless::OpenGLContext::Init() {
+    ML_PROFILE_FUNCTION();
+
     glfwMakeContextCurrent(m_WindowHandle);
     int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
     ML_CORE_ASSERT(status, "Failed to initialize Glad!")
@@ -22,5 +26,7 @@ void Moonless::OpenGLContext::Init() {
 }   
 
 void Moonless::OpenGLContext::SwapBuffers() {
+    ML_PROFILE_FUNCTION();
+
     glfwSwapBuffers(m_WindowHandle);   
 }

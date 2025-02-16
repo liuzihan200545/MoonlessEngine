@@ -13,27 +13,39 @@ namespace Moonless
     static uint8_t m_is_glfw_initialized = 0;
 
     Window* Window::Create(const WindowProps& props) {
+        ML_PROFILE_FUNCTION();
+
         return new WindowsWindow(props);
     }
 
     WindowsWindow::WindowsWindow(const WindowProps& props) {
+        ML_PROFILE_FUNCTION();
+
         Init(props);
     }
 
     WindowsWindow::~WindowsWindow() {
+        ML_PROFILE_FUNCTION();
+
         ShutDown();
     }
 
     void WindowsWindow::OnUpdate() {
+        ML_PROFILE_FUNCTION();
+
         glfwPollEvents();
         m_context->SwapBuffers();
     }
 
     void WindowsWindow::SetEventCallback(const EventCallbackFn& callback_fn) {
+        ML_PROFILE_FUNCTION();
+
         m_data.EventCallback = callback_fn;
     }
 
     void WindowsWindow::SetVSync(bool enabled) {
+        ML_PROFILE_FUNCTION();
+
         if(enabled)
         {
             glfwSwapInterval(1);
@@ -47,6 +59,8 @@ namespace Moonless
     }
 
     void WindowsWindow::Init(const WindowProps& props) {
+        ML_PROFILE_FUNCTION();
+
         m_data.Title = props.Title;
         m_data.Width = props.Width;
         m_data.Height = props.Height;
@@ -170,6 +184,8 @@ namespace Moonless
     }
 
     void WindowsWindow::ShutDown() {
+        ML_PROFILE_FUNCTION();
+
         glfwDestroyWindow(m_window);
 
         if( --m_is_glfw_initialized == 0 )

@@ -25,6 +25,8 @@ void SandBox2D::OnEvent(Moonless::Event& event) {
 
 void SandBox2D::OnUpdate(Moonless::Timestep ts) {
     ML_PROFILE_FUNCTION();
+
+    ML_CORE_ERROR("FRAME TIME:{}",ts.GetMilliseconds());
     
     this->ts = ts;
     {

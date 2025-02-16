@@ -17,6 +17,8 @@ Moonless::ImguiLayer::~ImguiLayer() {
 }
 
 void Moonless::ImguiLayer::OnAttach() {
+    ML_PROFILE_FUNCTION();
+
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -50,23 +52,29 @@ void Moonless::ImguiLayer::OnAttach() {
 }
 
 void Moonless::ImguiLayer::OnDetach() {
+    ML_PROFILE_FUNCTION();
+
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
 }
 
 void Moonless::ImguiLayer::OnImGuiRender() {
-    /*static bool show = false;
-    ImGui::ShowDemoWindow(&show);*/
+    ML_PROFILE_FUNCTION();
+
 }
 
 void Moonless::ImguiLayer::Begin() {
+    ML_PROFILE_FUNCTION();
+
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 }
 
 void Moonless::ImguiLayer::End() {
+    ML_PROFILE_FUNCTION();
+
     ImGuiIO& io = ImGui::GetIO();
     Application& app = Application::get();
     io.DisplaySize = ImVec2(static_cast<float>(app.GetWindow().GetWidth()), static_cast<float>(app.GetWindow().GetHeight()));

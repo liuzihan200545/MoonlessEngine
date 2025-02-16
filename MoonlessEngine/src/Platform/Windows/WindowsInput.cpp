@@ -9,6 +9,8 @@ namespace Moonless
 std::unique_ptr<Input> Input::m_handle = std::make_unique<WindowsInput>();
 
 bool WindowsInput::IsKeyPressedImpl(int keycode) {
+    ML_PROFILE_FUNCTION();
+
     GLFWwindow* window = static_cast<GLFWwindow*>(Application::get().GetWindow().GetNativeWindow());
 
     auto state = glfwGetKey(window,keycode);
@@ -17,6 +19,8 @@ bool WindowsInput::IsKeyPressedImpl(int keycode) {
 }
 
 bool WindowsInput::IsMouseButtonPressedImpl(int keycode) {
+    ML_PROFILE_FUNCTION();
+
     GLFWwindow* window = static_cast<GLFWwindow*>(Application::get().GetWindow().GetNativeWindow());
 
     auto state = glfwGetMouseButton(window,keycode);
@@ -25,6 +29,8 @@ bool WindowsInput::IsMouseButtonPressedImpl(int keycode) {
 }
 
 std::pair<float, float> WindowsInput::GetMousePositionImpl() {
+    ML_PROFILE_FUNCTION();
+
     GLFWwindow* window = static_cast<GLFWwindow*>(Application::get().GetWindow().GetNativeWindow());
     double pos_x,pos_y;
     glfwGetCursorPos(window,&pos_x,&pos_y);
@@ -33,10 +39,14 @@ std::pair<float, float> WindowsInput::GetMousePositionImpl() {
 }
 
 float WindowsInput::GetMousePosXImpl() {
+    ML_PROFILE_FUNCTION();
+
     return GetMousePositionImpl().first;
 }
 
 float WindowsInput::GetMousePosYImpl() {
+    ML_PROFILE_FUNCTION();
+
     return GetMousePositionImpl().second;
 }
 }

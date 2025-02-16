@@ -7,6 +7,9 @@
     <Filter Include="Moonless\Core">
       <UniqueIdentifier>{EDF96F14-59BA-EB4A-22F5-34C88E743027}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Moonless\Debug">
+      <UniqueIdentifier>{AB927BA2-9760-6FA8-80F4-DFCE6C614B0D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Moonless\Events">
       <UniqueIdentifier>{B93A78F5-25C6-E5B9-2ED7-68AE9AE141BA}</UniqueIdentifier>
     </Filter>
@@ -28,17 +31,44 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Moonless.h" />
-    <ClInclude Include="src\Moonless\Application.h">
-      <Filter>Moonless</Filter>
+    <ClInclude Include="src\Moonless\Core\Application.h">
+      <Filter>Moonless\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Moonless\Core.h">
-      <Filter>Moonless</Filter>
+    <ClInclude Include="src\Moonless\Core\Core.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\EntryPoint.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\Input.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\KeyCodes.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\Layer.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\LayerStack.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\Log.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\MouseButtonCodes.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Core\OrthographicCameraController.h">
+      <Filter>Moonless\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Moonless\Core\TimeStep.h">
       <Filter>Moonless\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Moonless\EntryPoint.h">
-      <Filter>Moonless</Filter>
+    <ClInclude Include="src\Moonless\Core\Window.h">
+      <Filter>Moonless\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Moonless\Debug\Instrumentor.h">
+      <Filter>Moonless\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\Moonless\Events\ApplicationEvent.h">
       <Filter>Moonless\Events</Filter>
@@ -51,27 +81,6 @@
     </ClInclude>
     <ClInclude Include="src\Moonless\Events\MouseEvent.h">
       <Filter>Moonless\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moonless\Input.h">
-      <Filter>Moonless</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moonless\KeyCodes.h">
-      <Filter>Moonless</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moonless\Layer.h">
-      <Filter>Moonless</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moonless\LayerStack.h">
-      <Filter>Moonless</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moonless\Log.h">
-      <Filter>Moonless</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moonless\MouseButtonCodes.h">
-      <Filter>Moonless</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moonless\OrthographicCameraController.h">
-      <Filter>Moonless</Filter>
     </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\Buffer.h">
       <Filter>Moonless\Renderer</Filter>
@@ -88,6 +97,9 @@
     <ClInclude Include="src\Moonless\Renderer\Renderer.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\Renderer2D.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\RendererAPI.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
@@ -99,9 +111,6 @@
     </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\VertexArray.h">
       <Filter>Moonless\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Moonless\Window.h">
-      <Filter>Moonless</Filter>
     </ClInclude>
     <ClInclude Include="src\Moonless\imgui\ImguiLayer.h">
       <Filter>Moonless\imgui</Filter>
@@ -139,23 +148,23 @@
     <ClInclude Include="src\mlpch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Moonless\Application.cpp">
-      <Filter>Moonless</Filter>
+    <ClCompile Include="src\Moonless\Core\Application.cpp">
+      <Filter>Moonless\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Core\Layer.cpp">
+      <Filter>Moonless\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Core\LayerStack.cpp">
+      <Filter>Moonless\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Core\Log.cpp">
+      <Filter>Moonless\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Core\OrthographicCameraController.cpp">
+      <Filter>Moonless\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Moonless\Events\Event.cpp">
       <Filter>Moonless\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Moonless\Layer.cpp">
-      <Filter>Moonless</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Moonless\LayerStack.cpp">
-      <Filter>Moonless</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Moonless\Log.cpp">
-      <Filter>Moonless</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Moonless\OrthographicCameraController.cpp">
-      <Filter>Moonless</Filter>
     </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\Buffer.cpp">
       <Filter>Moonless\Renderer</Filter>
@@ -167,6 +176,9 @@
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\Renderer.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\Renderer2D.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\RendererAPI.cpp">
