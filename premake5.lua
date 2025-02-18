@@ -141,3 +141,57 @@ project "SandBox"
         symbols "off"
         optimize "on"
     linkoptions { "/NODEFAULTLIB:LIBCMT" }
+
+project "Editor"
+    location "Editor"
+    kind "ConsoleApp"
+    language "C++"
+
+    staticruntime "on"
+
+    targetdir ("bin/" ..outputdir.. "/%{prj.name}")
+    objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
+
+    files {
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
+
+    includedirs {
+        "%{wks.location}/include",
+        "MoonlessEngine/src",
+        "include/glad/include",
+        "MoonlessEngine/src/Moonless",
+    }
+
+    filter "system:windows"
+    cppdialect "C++20"
+    systemversion "latest"
+    buildoptions { "/utf-8" }
+
+    defines{
+        "ML_ENABLE_ASSERTS"
+    }
+
+    links{
+        "MoonlessEngine"
+    }
+
+    filter "configurations:Debug"
+        defines "ML_DEBUG"
+        runtime "Debug"
+        symbols "on"
+
+    filter "configurations:Release"
+        defines "ML_RELEASE"
+        runtime "Release"
+        symbols "off"
+        optimize "on"
+    
+    filter "configurations:Dist"
+        defines "ML_DIST"
+        runtime "Release"
+        symbols "off"
+        optimize "on"
+    linkoptions { "/NODEFAULTLIB:LIBCMT" }
+

@@ -1,5 +1,4 @@
 #include "SandBox2D.h"
-#include "Moonless/Core/EntryPoint.h"
 
 using namespace Moonless;
 

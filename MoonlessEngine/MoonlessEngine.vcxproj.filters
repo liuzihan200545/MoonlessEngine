@@ -85,6 +85,9 @@
     <ClInclude Include="src\Moonless\Renderer\Buffer.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Moonless\Renderer\FrameBuffer.h">
+      <Filter>Moonless\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Moonless\Renderer\GraphicsContext.h">
       <Filter>Moonless\Renderer</Filter>
     </ClInclude>
@@ -125,6 +128,9 @@
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -169,6 +175,9 @@
     <ClCompile Include="src\Moonless\Renderer\Buffer.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Moonless\Renderer\FrameBuffer.cpp">
+      <Filter>Moonless\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Moonless\Renderer\OrthographicCamera.cpp">
       <Filter>Moonless\Renderer</Filter>
     </ClCompile>
@@ -206,6 +215,9 @@
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
