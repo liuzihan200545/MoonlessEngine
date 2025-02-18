@@ -55,7 +55,7 @@ void Moonless::Application::run() {
         //Temp
         if(Input::IsKeyPressed(ML_KEY_ESCAPE))
         {
-            this->m_running = false;
+            Close();
         }
         //
         
@@ -128,7 +128,7 @@ void Moonless::Application::PushOverlay(Layer* layer) {
 bool Moonless::Application::OnWindowClose(WindowCloseEvent& e) {
     ML_PROFILE_FUNCTION();
 
-    this->m_running = false;
+    Close();
     return true;
 }
 
