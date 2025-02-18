@@ -27,6 +27,8 @@ namespace Moonless {
 		std::shared_ptr<Texture2D> m_check_board;
 		std::shared_ptr<Framebuffer> m_Framebuffer;
 
+		glm::vec2 m_viewprt_size;
+
 		Timestep ts;
 	};
 

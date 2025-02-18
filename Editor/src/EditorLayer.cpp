@@ -142,28 +142,25 @@ void EditorLayer::OnImGuiRender() {
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-
-		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 1080.f,720.f });
 		ImGui::End();
 
-		ImGui::End();
-	}
-	else
-	{
-		ImGui::Begin("Settings");
-
-		auto stats = Renderer2D::GetStats();
-		ImGui::Text("Renderer2D Stats:");
-		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
-		ImGui::Text("Quads: %d", stats.QuadCount);
-		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
-		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-
+		ImGui::Begin("ViewPort");
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 1080.f,720.f });
+		ImVec2 viewPortSize = ImGui::GetContentRegionAvail();
+		//ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
+
+		if(m_viewprt_size != *((glm::vec2*)(&viewPortSize)))
+		{
+			m_Framebuffer->Resize(viewPortSize.x,viewPortSize.y);
+			m_viewprt_size = {viewPortSize.x,viewPortSize.y};
+			m_CameraController.OnResize(viewPortSize.x, viewPortSize.y);
+		}
+		
+		ML_CORE_WARN("{},{}",viewPortSize.x,viewPortSize.y);
+		ImGui::Image((void*)textureID, viewPortSize,{0,1},{1,0});
+		ImGui::End();
+
+
 		ImGui::End();
 	}
 }
