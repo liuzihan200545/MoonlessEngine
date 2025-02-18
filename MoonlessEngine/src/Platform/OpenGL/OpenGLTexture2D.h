@@ -18,6 +18,9 @@ namespace Moonless
         uint32_t GetWidth() const override {
             return m_Width;
         }
+        uint32_t GetRendererID() const override {
+            return m_RendererID;
+        }
         void Bind(uint32_t slot) const override;
         void SetData(void* data, uint32_t size) override;
         bool operator==(const Texture& other) const override

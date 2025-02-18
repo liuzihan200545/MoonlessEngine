@@ -25,6 +25,8 @@ namespace Moonless
 
         Window& GetWindow() { return *m_window; }
 
+        void Close() { m_running = false; }
+        
         static Application& get() { return *m_handle; }
 
         bool OnWindowClose(WindowCloseEvent& e);

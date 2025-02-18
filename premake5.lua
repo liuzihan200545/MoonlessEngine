@@ -1,9 +1,9 @@
 workspace "MoonlessEngine"
-    startproject "Sandbox"
-    architecture "x64"
+    startproject "SandBox"
+    architecture "x86_64"
 
     flags { "MultiProcessorCompile" }
-
+        
     configurations{
         "Debug",
         "Release",
@@ -73,17 +73,19 @@ project "MoonlessEngine"
     filter "configurations:Debug"
         defines "ML_DEBUG"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "ML_RELEASE"
         runtime "Release"
-        symbols "On"
+        symbols "off"
+        optimize "on"   
 
     filter "configurations:Dist"
         defines "ML_DIST"
         runtime "Release"
-        symbols "On"
+        symbols "off"
+        optimize "on"
 
     linkoptions { "/NODEFAULTLIB:LIBCMT" }
 
@@ -125,16 +127,17 @@ project "SandBox"
     filter "configurations:Debug"
         defines "ML_DEBUG"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "ML_RELEASE"
         runtime "Release"
-        symbols "On"
-
+        symbols "off"
+        optimize "on"
+    
     filter "configurations:Dist"
         defines "ML_DIST"
         runtime "Release"
-        symbols "On"
-
+        symbols "off"
+        optimize "on"
     linkoptions { "/NODEFAULTLIB:LIBCMT" }

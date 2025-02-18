@@ -17,9 +17,9 @@ namespace Moonless
 
     struct Renderer2DData
     {
-        const uint32_t MaxQuads = 10000;
-        const uint32_t MaxVertices = MaxQuads * 4;
-        const uint32_t MaxIndices = MaxQuads * 6;
+        static const uint32_t MaxQuads = 100;
+        static const uint32_t MaxVertices = MaxQuads * 4;
+        static const uint32_t MaxIndices = MaxQuads * 6;
         static const uint32_t MaxTextureSlots = 32;
         
         std::shared_ptr<VertexArray> QuadVertexArray;
@@ -34,6 +34,8 @@ namespace Moonless
         std::array<std::shared_ptr<Texture2D>, MaxTextureSlots> TextureSlots;
         uint32_t TextureSlotIndex = 1; // 0 = white texture
         glm::vec4 QuadVertexPositions[4];
+
+        Renderer2D::Statistics Stats;
     };
 
     static Renderer2DData s_Data;
@@ -127,6 +129,7 @@ namespace Moonless
         for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
             s_Data.TextureSlots[i]->Bind(i);
         RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
+        s_Data.Stats.DrawCalls ++;
     }
 
     void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color) {
@@ -137,6 +140,9 @@ namespace Moonless
 
     void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {
         ML_PROFILE_FUNCTION();
+        
+        if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
+            FlushAndReset();
 
         const float texIndex = 0.0f; // White Texture
         const float tilingFactor = 1.0f;
@@ -173,6 +179,7 @@ namespace Moonless
         s_Data.QuadVertexBufferPtr++;
 
         s_Data.QuadIndexCount += 6;
+        s_Data.Stats.QuadCount++;
     }
 
     void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color) {
@@ -183,6 +190,12 @@ namespace Moonless
 
     void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const std::shared_ptr<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color) {
         ML_PROFILE_FUNCTION();
+
+        if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
+            FlushAndReset();
+
+        if (s_Data.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+            FlushAndReset();
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
             * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
@@ -234,6 +247,7 @@ namespace Moonless
         s_Data.QuadVertexBufferPtr++;
 
         s_Data.QuadIndexCount += 6;
+        s_Data.Stats.QuadCount++;
     }
 
     void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color) {
@@ -242,6 +256,12 @@ namespace Moonless
 
     void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color) {
         ML_PROFILE_FUNCTION();
+
+        if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
+            FlushAndReset();
+
+        if (s_Data.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+            FlushAndReset();
 
         const float texIndex = 0.0f; // White Texture
         const float tilingFactor = 1.0f;
@@ -279,6 +299,8 @@ namespace Moonless
         s_Data.QuadVertexBufferPtr++;
 
         s_Data.QuadIndexCount += 6;
+
+        s_Data.Stats.QuadCount++;
     }
 
     void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation,
@@ -292,6 +314,9 @@ namespace Moonless
     {
         ML_PROFILE_FUNCTION();
 
+        if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
+            FlushAndReset();
+
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
             * glm::rotate(glm::mat4(1.0f), glm::radians(rotation), { 0.0f, 0.0f, 1.0f })
             * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
@@ -343,5 +368,22 @@ namespace Moonless
         s_Data.QuadVertexBufferPtr++;
 
         s_Data.QuadIndexCount += 6;
+
+        s_Data.Stats.QuadCount++;
+    }
+
+    void Renderer2D::ResetStats() {
+        memset(&s_Data.Stats, 0, sizeof(Statistics));
+    }
+
+    Renderer2D::Statistics Renderer2D::GetStats() {
+        return s_Data.Stats;
+    }
+
+    void Renderer2D::FlushAndReset() {
+        EndScene();
+        s_Data.QuadIndexCount = 0;
+        s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
+        s_Data.TextureSlotIndex = 1;
     }
 }
