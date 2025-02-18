@@ -12,11 +12,17 @@ SandBox2D::~SandBox2D() {
 }
 
 void SandBox2D::OnAttach() {
+	ML_PROFILE_FUNCTION();
     m_check_board = Texture2D::Create("assets/textures/Checkerboard.png");
+
+	FramebufferSpecification fbSpec;
+	fbSpec.Width = 1080;
+	fbSpec.Height = 720;
+	m_Framebuffer = Framebuffer::Create(fbSpec);
 }
 
 void SandBox2D::OnDetach() {
-    
+	ML_PROFILE_FUNCTION();
 }
 
 void SandBox2D::OnEvent(Moonless::Event& event) {
@@ -27,13 +33,11 @@ void SandBox2D::OnUpdate(Moonless::Timestep ts) {
     ML_PROFILE_FUNCTION();
     Renderer2D::ResetStats();
     this->ts = ts;
-    {
-        ML_PROFILE_SCOPE("CameraController OnUpdate");
-        m_CameraController.OnUpdate(ts);
-    }
+	m_CameraController.OnUpdate(ts);
     
     {
         ML_PROFILE_SCOPE("Render Prepare");
+    	m_Framebuffer->Bind();
         RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
         RenderCommand::Clear();
     }
@@ -49,15 +53,16 @@ void SandBox2D::OnUpdate(Moonless::Timestep ts) {
         Renderer2D::EndScene();
 
         Renderer2D::BeginScene(m_CameraController.GetCamera());
-        for (float y = -5.0f; y < 5.0f; y += 0.1f)
+        for (float y = -5.0f; y < 5.0f; y += 0.5f)
         {
-            for (float x = -5.0f; x < 5.0f; x += 0.1f)
+            for (float x = -5.0f; x < 5.0f; x += 0.5f)
             {
                 glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
                 Renderer2D::DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
             }
         }
         Renderer2D::EndScene();
+    	m_Framebuffer->Unbind();
     }
     
 }
@@ -136,8 +141,8 @@ void SandBox2D::OnImGuiRender() {
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_check_board->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 1080.f,720.f });
 		ImGui::End();
 
 		ImGui::End();
@@ -155,8 +160,8 @@ void SandBox2D::OnImGuiRender() {
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_check_board->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 1080.f,720.f });
 		ImGui::End();
 	}
 }

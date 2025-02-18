@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "Moonless/Renderer/Texture.h"
+#include "Moonless/Renderer/FrameBuffer.h"
 
 using namespace Moonless;
 
@@ -24,6 +25,7 @@ private:
     glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 
     std::shared_ptr<Texture2D> m_check_board;
+    std::shared_ptr<Framebuffer> m_Framebuffer;
 
     Timestep ts;
     
