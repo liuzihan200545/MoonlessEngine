@@ -29,6 +29,8 @@ namespace Moonless {
 
 		glm::vec2 m_viewprt_size;
 
+		bool m_ViewportFocused = false, m_ViewportHovered = false;
+
 		Timestep ts;
 	};
 

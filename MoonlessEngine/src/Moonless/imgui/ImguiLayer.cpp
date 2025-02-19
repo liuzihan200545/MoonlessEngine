@@ -64,6 +64,15 @@ void Moonless::ImguiLayer::OnImGuiRender() {
 
 }
 
+void Moonless::ImguiLayer::OnEvent(Event& event) {
+    if (m_BlockEvents)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        event.Handled |= event.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+        event.Handled |= event.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+    }
+}
+
 void Moonless::ImguiLayer::Begin() {
     ML_PROFILE_FUNCTION();
 

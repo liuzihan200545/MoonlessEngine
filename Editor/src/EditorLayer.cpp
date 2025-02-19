@@ -36,7 +36,9 @@ void EditorLayer::OnUpdate(Timestep ts) {
     ML_PROFILE_FUNCTION();
     Renderer2D::ResetStats();
     this->ts = ts;
-    m_CameraController.OnUpdate(ts);
+	
+	if (m_ViewportFocused)
+		m_CameraController.OnUpdate(ts);
     
     {
         ML_PROFILE_SCOPE("Render Prepare");
@@ -145,6 +147,11 @@ void EditorLayer::OnImGuiRender() {
 		ImGui::End();
 
 		ImGui::Begin("ViewPort");
+
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+		Application::get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+		
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImVec2 viewPortSize = ImGui::GetContentRegionAvail();
 		//ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });

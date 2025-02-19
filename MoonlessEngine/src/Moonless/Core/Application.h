@@ -33,7 +33,7 @@ namespace Moonless
 
         bool OnWindowResize(WindowResizeEvent& e);
         
-        
+        ImguiLayer* GetImGuiLayer() { return m_imgui_layer; }
     private:
         std::unique_ptr<Window> m_window;
 
